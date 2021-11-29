@@ -72,7 +72,7 @@ void Game::updateLevel()
 {
     for(int i = 0; i < lane; ++i)
     {
-        Obsticles obs(3, i, 1, 1, (rand()%4 + 1));
+        Obstacles obs(3, i, 1, 1, (rand()%4 + 1));
         obsList.push_back(obs);
     }
 }

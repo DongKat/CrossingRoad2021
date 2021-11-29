@@ -2,7 +2,7 @@
 
 void GotoXY(int x, int y);
 
-Obsticles::Obsticles(int xPos, int lane, int length, int width, int speed)
+Obstacles::Obstacles(int xPos, int lane, int length, int width, int speed)
 {
     this->xPos = xPos;
     this->lane = lane;
@@ -11,33 +11,33 @@ Obsticles::Obsticles(int xPos, int lane, int length, int width, int speed)
     this->speed = speed;
 }
 
-void Obsticles::updatePosition()
+void Obstacles::updatePosition()
 {
    xPos += 1;
 }
 
-void Obsticles::draw()
+void Obstacles::draw()
 {
     GotoXY(xPos, 3 + lane*3);
     cout << ">";
 }
 
-int Obsticles::getXPos()
+int Obstacles::getXPos()
 {
     return xPos;
 }
 
-void Obsticles::setXPos(int xPos)
+void Obstacles::setXPos(int xPos)
 {
     this->xPos = xPos;
 }
 
-void Obsticles::output()
+void Obstacles::output()
 {
     cout << "xPos: " << xPos << " lane: " << lane << " length: " << length << " width: " << width << endl;   
 }
 
-int Obsticles::getSpeed()
+int Obstacles::getSpeed()
 {
     return speed;
 }
