@@ -11,7 +11,20 @@ using namespace std;
 
 class Player
 {
-    
+    private:
+        int xPos;
+        int yPos;
+        int length, width;
+
+    public:
+        Player(int xPos, int yPos, int length, int width);
+        void draw();
+        void takeKBinput();
+        void setPosition(int xPos, int yPos);
+        int getXPos();
+        int getYPos();
+        int getLength();
+        int getWidth();
 };
 
 class Obstacles
