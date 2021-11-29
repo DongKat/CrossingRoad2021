@@ -14,7 +14,7 @@ class Player
     
 };
 
-class Obsticles
+class Obstacles
 {
     private:
         int xPos;
@@ -22,7 +22,7 @@ class Obsticles
         int length, width;
         int speed;
     public:
-        Obsticles(int xPos, int lane, int length, int width, int speed);
+        Obstacles(int xPos, int lane, int length, int width, int speed);
         void updatePosition();
         void draw();
         int getXPos();
@@ -39,7 +39,7 @@ class Game //Frame
         int Time;
         int frameTime;
         int level;
-        vector<Obsticles> obsList;
+        vector<Obstacles> obsList;
 
     public:
         Game();
@@ -49,8 +49,7 @@ class Game //Frame
         void draw();
         int getTime();
         void outputObs();
-        //void addObsticle(Obsticles obs);
-        
+        //void addObsticle(Obstacles obs); 
 };
 
 #endif 
