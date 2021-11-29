@@ -1,6 +1,20 @@
-#include <iostream>
+#include "CrossingRoad.h"
 
 int main()
 {
-	std::cout << "Hello world";
+	Game game;
+	game.updateLevel();
+	
+	while(true)
+	{
+		game.updateFrame();
+		game.draw();
+		Sleep(400);
+		system("cls");
+
+	}
+
+
+	system("pause");
+	return 0;
 }
