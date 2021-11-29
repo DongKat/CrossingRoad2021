@@ -1,5 +1,15 @@
 #include "CrossingRoad.h"
 
+void GotoXY(int x, int y);
+
+Player::Player()
+{
+    xPos = 0;
+    yPos = 0;
+    length = 3;
+    width = 1;
+}
+
 Player::Player(int xPos, int yPos, int length, int width)
 {
     this->xPos = xPos;
@@ -21,18 +31,26 @@ void Player::takeKBinput()
         char input = getch();
         if(input == 'a')
         {
+            GotoXY(xPos, yPos);
+            cout << " ";
             xPos -= 1;
         }
         else if(input == 'd')
         {
+            GotoXY(xPos, yPos);
+            cout << " ";
             xPos += 1;
         }
         else if(input == 'w')
         {
+            GotoXY(xPos, yPos);
+            cout << " ";
             yPos -= 1;
         }
         else if(input == 's')
         {
+            GotoXY(xPos, yPos);
+            cout << " ";
             yPos += 1;
         }
     }

@@ -17,6 +17,7 @@ class Player
         int length, width;
 
     public:
+        Player();
         Player(int xPos, int yPos, int length, int width);
         void draw();
         void takeKBinput();
@@ -39,6 +40,7 @@ class Obstacles
         void updatePosition();
         void draw();
         int getXPos();
+        int getLane();
         void setXPos(int xPos);
         void output();
         int getSpeed();
@@ -52,6 +54,7 @@ class Game //Frame
         int Time;
         int frameTime;
         int level;
+        Player player;
         vector<Obstacles> obsList;
 
     public:
@@ -59,9 +62,11 @@ class Game //Frame
         Game(int xMap, int lane);
         void updateLevel();
         void updateFrame();
+        void InitDraw();
         void draw();
         int getTime();
         void outputObs();
+        bool checkCollision();
         //void addObsticle(Obstacles obs); 
 };
 

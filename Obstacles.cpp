@@ -18,13 +18,18 @@ void Obstacles::updatePosition()
 
 void Obstacles::draw()
 {
-    GotoXY(xPos, 3 + lane*3);
-    cout << ">";
+    GotoXY(xPos - 1, 3 + lane*3);
+    cout << " >";
 }
 
 int Obstacles::getXPos()
 {
     return xPos;
+}
+
+int Obstacles::getLane()
+{
+    return lane;
 }
 
 void Obstacles::setXPos(int xPos)
