@@ -4,7 +4,10 @@ void GotoXY(int x, int y);
 
 int main()
 {
-	Game game;
+	Player p;
+	p.draw();
+	cout << "a";
+	/*Game game;
 	game.updateLevel();
 	game.InitDraw();
 
@@ -27,7 +30,7 @@ int main()
 		Sleep(1);
 	}
 
-
+	*/
 	system("pause");
 	return 0;
 }
