@@ -6,7 +6,7 @@ Player::Player()
 {
     xPos = 0;
     yPos = 0;
-    length = 3;
+    length = 1;
     width = 1;
 }
 
@@ -24,30 +24,30 @@ void Player::draw()
     cout << "0";
 }
 
-void Player::takeKBinput()
+void Player::takeKBinput(Game game)
 {
     if(kbhit())
     {
         char input = getch();
-        if(input == 'a')
+        if((input == 'a' || input == 'A') && xPos > 0)
         {
             GotoXY(xPos, yPos);
             cout << " ";
             xPos -= 1;
         }
-        else if(input == 'd')
+        else if((input == 'd' || input == 'D') && xPos < game.xMap - this->length)
         {
             GotoXY(xPos, yPos);
             cout << " ";
             xPos += 1;
         }
-        else if(input == 'w')
+        else if((input == 'w' || input == 'W') && yPos > 0)
         {
             GotoXY(xPos, yPos);
             cout << " ";
             yPos -= 1;
         }
-        else if(input == 's')
+        else if((input == 's' || input == 'S') && yPos <= game.yMap - this->width)
         {
             GotoXY(xPos, yPos);
             cout << " ";

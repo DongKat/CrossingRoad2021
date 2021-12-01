@@ -41,18 +41,18 @@ void Game::updateFrame()
         
         if(obsList[i].getXPos() >= xMap)
         {
-            GotoXY(xMap - 1,obsList[i].getLane()*3 + 3);
+            GotoXY(xMap - 1,obsList[i].getLane()*3);
             cout << " ";
             obsList[i].setXPos(3);
         }
 
     }
-    player.takeKBinput();
+    player.takeKBinput(*this);
 }
 
 void Game::draw()
 {
-    GotoXY(6,0);
+    GotoXY(101,0);
     cout << Time;
 
     player.draw();
@@ -65,9 +65,9 @@ void Game::draw()
 
 void Game::InitDraw()
 {
-    GotoXY(0,0);
-    cout << "Time: " << Time << " ms" << endl;
-    for(int i = 0; i < yMap; ++i)
+    GotoXY(95,0);
+    cout << "Time: ";
+    for(int i = 1; i <= yMap; ++i)
     {
         GotoXY(0, i + 1);
         cout << "||" << endl;
@@ -100,9 +100,20 @@ bool Game::checkCollision()
 {
     for(int i = 0; i < obsList.size(); ++i)
     {
-        if(player.getXPos() == obsList[i].getXPos() && player.getYPos() == obsList[i].getLane()*3 + 3)
+        if(player.getYPos() + player.getWidth() >= obsList[i].getLane() * 3)
         {
-            return true;
+            if(obsList[i].getXPos() + obsList[i].getLength() >= player.getXPos() || player.getXPos() + player.getLength() >= obsList[i].getXPos())
+            {
+                return true;
+            }
+        }
+
+        if(obsList[i].getLane() * 3 + obsList[i].getWidth() >= player.getYPos())
+        {
+            if(player.getXPos() + player.getLength() >= obsList[i].getXPos() || obsList[i].getXPos() + obsList[i].getLength() >= player.getXPos())
+            {
+                return true;
+            }
         }
     }
     return false;

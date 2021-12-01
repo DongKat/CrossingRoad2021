@@ -9,6 +9,7 @@
 
 using namespace std;
 
+class Game;
 class Player
 {
     private:
@@ -20,7 +21,7 @@ class Player
         Player();
         Player(int xPos, int yPos, int length, int width);
         void draw();
-        void takeKBinput();
+        void takeKBinput(Game game);
         void setPosition(int xPos, int yPos);
         int getXPos();
         int getYPos();
@@ -44,6 +45,9 @@ class Obstacles
         void setXPos(int xPos);
         void output();
         int getSpeed();
+        int getLength();
+        int getWidth();
+
 };
 
 class Game //Frame
@@ -67,6 +71,7 @@ class Game //Frame
         int getTime();
         void outputObs();
         bool checkCollision();
+        friend void Player::takeKBinput(Game game);
         //void addObsticle(Obstacles obs); 
 };
 

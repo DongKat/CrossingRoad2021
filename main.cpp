@@ -16,11 +16,14 @@ int main()
 
 		if(game.checkCollision())
 		{
-			GotoXY(50,15);
-			cout << "Game Over" << endl;
-			break;
+			GotoXY(100,3);
+			cout << "Collided: True ";
 		}
-		
+		else
+		{
+			GotoXY(100,3);
+			cout << "Collided: False";
+		}
 		Sleep(1);
 	}
 

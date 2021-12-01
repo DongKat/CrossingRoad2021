@@ -46,3 +46,13 @@ int Obstacles::getSpeed()
 {
     return speed;
 }
+
+int Obstacles::getLength()
+{
+    return length;
+}
+
+int Obstacles::getWidth()
+{
+    return width;
+}
