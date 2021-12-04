@@ -21,7 +21,7 @@ Player::Player(int xPos, int yPos, int length, int width)
 void Player::draw()
 {
 
-	// Human looks like this █
+	//// Human looks like this █
 	//GotoXY(xPos, yPos);     cout << char(219);
 
 	// Or human looks like this:
@@ -36,7 +36,7 @@ void Player::draw()
 	GotoXY(xPos, yPos);     cout << " ('_') ";
 	GotoXY(xPos, yPos + 1); cout << "/|   |\\";
 	GotoXY(xPos, yPos + 2); cout << " |___| ";
-	GotoXY(xPos, yPos + 3); cout << " |_  |_ ";
+	GotoXY(xPos, yPos + 3); cout << " |_  |_";
 }
 
 void Player::takeKBinput(Game game)

@@ -12,11 +12,11 @@ Game::Game()
 {
     xMap = 90;
     lane = 9;
-    yMap = 3*lane;
+    yMap = 5*lane;
     Time = 0;
     frameTime = 1;
     level = 1;
-
+    obsList.resize(lane);
     player.setPosition(30,10);
 }
 
@@ -24,7 +24,7 @@ Game::Game(int xMap, int lane)
 {
     this->xMap = xMap;
     this->lane = lane;
-    yMap = 3*lane;
+    yMap = 5*lane;
     Time = 0;
     level = 1;
 }
@@ -32,21 +32,24 @@ Game::Game(int xMap, int lane)
 void Game::updateFrame()
 {
     Time += frameTime;
-    for(int i = 0; i < obsList.size(); i++)
+    for (int i = 0; i < obsList.size(); i++)
     {
-        if(Time % obsList[i].getSpeed() == 0)
-        {
-            obsList[i].updatePosition();
-        }
-        
-        if(obsList[i].getXPos() >= xMap)
-        {
-            GotoXY(xMap - 1,obsList[i].getLane()*3);
-            cout << " ";
-            obsList[i].setXPos(3);
+        for (int j = 0; j < obsList[i].size(); j++) {
+            if (Time % obsList[i][j]->getSpeed() == 0)
+            {
+                obsList[i][j]->updatePosition();
+                if (obsList[i][j]->getXPos() + obsList[i][j]->getLength() - 1 >= xMap) {
+                    obsList[i][j]->popShape();
+                }
+            }
+
+            if (obsList[i][j]->getXPos() == xMap)
+                obsList[i].erase(obsList[i].begin() + j);
+
         }
 
     }
+    addObstacle();
     player.takeKBinput(*this);
 }
 
@@ -56,11 +59,9 @@ void Game::draw()
     cout << Time;
 
     player.draw();
-
-    for(int i = 0; i < obsList.size(); ++i)
-    {
-        obsList[i].draw();
-    }
+    for (int i = 0; i < obsList.size(); ++i)
+        for (int j = 0; j < obsList[i].size(); j++)
+            obsList[i][j]->draw();
 }
 
 void Game::InitDraw()
@@ -83,38 +84,60 @@ int Game::getTime()
 
 void Game::updateLevel()
 {
-    for(int i = 0; i < lane; ++i)
-    {
-        Obstacles obs(3, i, 1, 1, (rand()%3 + 2));
-        obsList.push_back(obs);
-    }
+   
+    
 }
 
 void Game::outputObs()
 {
     for (int i = 0; i < obsList.size(); ++i)
-        obsList[i].output();
+        for(int j = 0; j < obsList[i].size(); j++)
+            obsList[i][j]->output();
 }
 
 bool Game::checkCollision()
 {
     for(int i = 0; i < obsList.size(); ++i)
     {
-        if(player.getYPos() + player.getWidth() >= obsList[i].getLane() * 3)
-        {
-            if(obsList[i].getXPos() + obsList[i].getLength() >= player.getXPos() || player.getXPos() + player.getLength() >= obsList[i].getXPos())
+        for (int j = 0; j < obsList[i].size(); j++) {
+            if (player.getYPos() + player.getWidth() >= obsList[i][j]->getLane() * 5)
             {
-                return true;
+                if (obsList[i][j]->getXPos() + obsList[i][j]->getLength() >= player.getXPos() || player.getXPos() + player.getLength() >= obsList[i][j]->getXPos())
+                {
+                    return true;
+                }
             }
-        }
 
-        if(obsList[i].getLane() * 3 + obsList[i].getWidth() >= player.getYPos())
-        {
-            if(player.getXPos() + player.getLength() >= obsList[i].getXPos() || obsList[i].getXPos() + obsList[i].getLength() >= player.getXPos())
+            if (obsList[i][j]->getLane() * 5 + obsList[i][j]->getWidth() >= player.getYPos())
             {
-                return true;
+                if (player.getXPos() + player.getLength() >= obsList[i][j]->getXPos() || obsList[i][j]->getXPos() + obsList[i][j]->getLength() >= player.getXPos())
+                {
+                    return true;
+                }
             }
         }
     }
     return false;
+}
+
+void Game::addObstacle() {
+    for (int j = 0; j < lane; j++) {
+        if (rand() % 70 == 0)
+        {
+            Obstacles* obs = nullptr;
+            if (rand() % 4 == 0)
+                obs = new Dinausor(3, j, 9, 5, (rand() % 3 + 2));
+            else if (rand() % 3 == 1)
+                obs = new Car(3, j, 15, 3, (rand() % 3 + 2));
+            else if (rand() % 3 == 2)
+                obs = new Truck(3, j, 24, 5, (rand() % 3 + 2));
+            else
+                obs = new Bike(3, j, 11, 3, (rand() % 3 + 2));
+
+            for (int k = 0; k < obsList[j].size(); k++)
+                if (obs->getSpeed() < obsList[j][k]->getSpeed() || obs->getLength() + 2 >= obsList[j][k]->getXPos())
+                    return;
+            obsList[j].push_back(obs);
+        }
+    }
 }
