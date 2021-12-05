@@ -6,8 +6,8 @@ Player::Player()
 {
 	xPos = 0;
 	yPos = 0;
-	length = 1;
-	width = 1;
+	length = 7;
+	width = 4;
 }
 
 Player::Player(int xPos, int yPos, int length, int width)
@@ -46,24 +46,28 @@ void Player::takeKBinput(Game game)
 		char input = getch();
 		if (input == 'a' || input == 'A' && xPos > 0)
 		{
+			clearPlayer();
 			GotoXY(xPos, yPos);
 			cout << " ";
 			xPos -= 1;
 		}
 		else if (input == 'd' || input == 'D' && xPos < game.xMap - this->length)
 		{
+			clearPlayer();
 			GotoXY(xPos, yPos);
 			cout << " ";
 			xPos += 1;
 		}
 		else if (input == 'w' || input == 'W' && yPos > 0)
 		{
+			clearPlayer();
 			GotoXY(xPos, yPos);
 			cout << " ";
 			yPos -= 1;
 		}
 		else if (input == 's' || input == 'S' && yPos <= game.yMap - this->width)
 		{
+			clearPlayer();
 			GotoXY(xPos, yPos);
 			cout << " ";
 			yPos += 1;
@@ -95,4 +99,14 @@ int Player::getLength()
 int Player::getWidth()
 {
 	return width;
+}
+
+void Player::clearPlayer()
+{
+	for(int i = 0; i < this->width; i++)
+	{
+		GotoXY(xPos, yPos + i);
+		for(int j = 0; j < this->length; j++)
+			cout << " ";
+	}
 }

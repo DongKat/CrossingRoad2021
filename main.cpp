@@ -8,7 +8,7 @@ int main()
 	p.draw();
 	cout << "a";*/
 	Game game;
-	game.updateLevel();
+	// game.updateLevel();
 	game.InitDraw();
 	while(true)
 	{
@@ -16,17 +16,13 @@ int main()
 		
 		game.draw();
 		game.updateFrame();
-		if(game.checkCollision())
-		{
-			GotoXY(100,3);
-			cout << "Collided: True ";
-		}
-		else
-		{
-			GotoXY(100,3);
-			cout << "Collided: False";
-		}
-		Sleep(1);
+
+		// if(game.checkCollision())
+		// {
+		// 	break;
+		// }
+
+		Sleep(10);
 	}
 
 	

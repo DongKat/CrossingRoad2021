@@ -11,13 +11,13 @@ void GotoXY(int x, int y)
 Game::Game()
 {
     xMap = 90;
-    lane = 9;
+    lane = 6;
     yMap = 5*lane;
     Time = 0;
     frameTime = 1;
     level = 1;
     obsList.resize(lane);
-    player.setPosition(30,10);
+    player.setPosition(30,26);
 }
 
 Game::Game(int xMap, int lane)
@@ -34,11 +34,13 @@ void Game::updateFrame()
     Time += frameTime;
     for (int i = 0; i < obsList.size(); i++)
     {
-        for (int j = 0; j < obsList[i].size(); j++) {
+        for (int j = 0; j < obsList[i].size(); j++) 
+        {
             if (Time % obsList[i][j]->getSpeed() == 0)
             {
                 obsList[i][j]->updatePosition();
-                if (obsList[i][j]->getXPos() + obsList[i][j]->getLength() - 1 >= xMap) {
+                if (obsList[i][j]->getXPos() + obsList[i][j]->getLength() - 1 >= xMap) 
+                {
                     obsList[i][j]->popShape();
                 }
             }
@@ -121,18 +123,19 @@ bool Game::checkCollision()
 }
 
 void Game::addObstacle() {
-    for (int j = 0; j < lane; j++) {
-        if (rand() % 70 == 0)
+    for (int j = 0; j < lane; j++) 
+    {
+        if (rand() % (300 / level) == 0)
         {
             Obstacles* obs = nullptr;
             if (rand() % 4 == 0)
-                obs = new Dinausor(3, j, 9, 5, (rand() % 3 + 2));
+                obs = new Dinausor(3, j, 9, 5, (rand() % 6 + 5));
             else if (rand() % 3 == 1)
-                obs = new Car(3, j, 15, 3, (rand() % 3 + 2));
+                obs = new Car(3, j, 15, 3, (rand() % 6 + 5));
             else if (rand() % 3 == 2)
-                obs = new Truck(3, j, 24, 5, (rand() % 3 + 2));
+                obs = new Truck(3, j, 24, 5, (rand() % 6 + 5));
             else
-                obs = new Bike(3, j, 11, 3, (rand() % 3 + 2));
+                obs = new Bike(3, j, 11, 3, (rand() % 6 + 5));
 
             for (int k = 0; k < obsList[j].size(); k++)
                 if (obs->getSpeed() < obsList[j][k]->getSpeed() || obs->getLength() + 2 >= obsList[j][k]->getXPos())
