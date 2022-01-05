@@ -5,7 +5,9 @@
 #include <Windows.h>
 #include <vector>
 #include <thread>
+#include <string>
 #include <conio.h>
+#include "BuildConsole.h"
 
 using namespace std;
 
@@ -111,6 +113,9 @@ class Game //Frame
 		bool checkCollision();
 		void addObstacle();
 		friend void Player::takeKBinput(Game game);
+
+		void loadGame();
+		void saveGame();
 
 };
 

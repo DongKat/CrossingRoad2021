@@ -1,12 +1,5 @@
 #include "CrossingRoad.h"
-
-void GotoXY(int x, int y)
-{
-    COORD coord;
-    coord.X = x;
-    coord.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-}
+#define PROOF "CROSSROADSAVE"
 
 Game::Game()
 {
@@ -143,4 +136,41 @@ void Game::addObstacle() {
             obsList[j].push_back(obs);
         }
     }
+}
+void Game::saveGame()
+{
+    // Get save file name
+    string name;                            // This way so I don't have to deal with char*
+    getline(cin, name);
+    FILE* file = fopen(name.c_str(), "wb");	// Write file in binary mode
+    if (!file)
+        throw runtime_error("Oh no, something go wrong. Game::saveGame");
+
+    fwrite(PROOF, sizeof(char), strlen(PROOF), file);   // Write certificate
+    fwrite(&level, sizeof(int), 1, file);               // Write level
+
+    fclose(file);
+}
+
+void Game::loadGame()
+{
+    // Get save file name
+    string name;
+    getline(cin, name);
+    FILE* file = fopen(name.c_str(), "rb");
+
+    if (!file)
+        throw runtime_error("Oh no, something go wrong. Game::loadGame");
+
+    char token[50];
+    fread(token, sizeof(char), strlen(PROOF), file);
+    token[strlen(PROOF)] = '\0';
+    if (strcmp(token, PROOF)) {
+        fclose(file);
+        throw runtime_error("Oh no, something go wrong. Game::loadGame");
+    }
+
+    fread(&level, sizeof(int), 1, file);        // Read saved game level
+
+    fclose(file);
 }
