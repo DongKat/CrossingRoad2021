@@ -8,6 +8,7 @@ Player::Player()
 	yPos = 0;
 	length = 7;
 	width = 4;
+	levelup = false;
 }
 
 Player::Player(int xPos, int yPos, int length, int width)
@@ -41,36 +42,41 @@ void Player::draw()
 
 void Player::takeKBinput(Game game)
 {
-	if (kbhit())
-	{
-		char input = getch();
-		if (input == 'a' || input == 'A' && xPos > 0)
+	if (game.Time >= 100) {
+		if (kbhit())
 		{
-			clearPlayer();
-			GotoXY(xPos, yPos);
-			cout << " ";
-			xPos -= 1;
-		}
-		else if (input == 'd' || input == 'D' && xPos < game.xMap - this->length)
-		{
-			clearPlayer();
-			GotoXY(xPos, yPos);
-			cout << " ";
-			xPos += 1;
-		}
-		else if (input == 'w' || input == 'W' && yPos > 0)
-		{
-			clearPlayer();
-			GotoXY(xPos, yPos);
-			cout << " ";
-			yPos -= 1;
-		}
-		else if (input == 's' || input == 'S' && yPos <= game.yMap - this->width)
-		{
-			clearPlayer();
-			GotoXY(xPos, yPos);
-			cout << " ";
-			yPos += 1;
+			char input = getch();
+			if ((input == 'a' || input == 'A') && xPos > 0)
+			{
+				clearPlayer();
+				GotoXY(xPos, yPos);
+				cout << " ";
+				xPos -= 3;
+			}
+			else if ((input == 'd' || input == 'D') && xPos < game.xMap - this->length - 2)
+			{
+				clearPlayer();
+				GotoXY(xPos, yPos);
+				cout << " ";
+				xPos += 3;
+			}
+			else if (input == 'w' || input == 'W') {
+				if (yPos > 3) {
+					clearPlayer();
+					GotoXY(xPos, yPos);
+					cout << " ";
+					yPos -= 6;
+				}
+				else
+					levelup = true;
+			}
+			else if ((input == 's' || input == 'S') && yPos <= game.yMap - this->width)
+			{
+				clearPlayer();
+				GotoXY(xPos, yPos);
+				cout << " ";
+				yPos += 6;
+			}
 		}
 	}
 }
@@ -109,4 +115,8 @@ void Player::clearPlayer()
 		for(int j = 0; j < this->length; j++)
 			cout << " ";
 	}
+}
+bool Player::levelUp()
+{
+	return levelup;
 }

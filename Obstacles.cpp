@@ -75,7 +75,7 @@ void Dinausor::popShape() {
 void Dinausor::draw()
 {
 	for (int i = 0; i < 5; i++) {
-		GotoXY(getXPos() - 1, getLane() * 5 + i + 1);
+		GotoXY(getXPos() - 1, getLane() * 6 + i + 2);
 		cout << shape[i];
 	}
 }
@@ -100,7 +100,7 @@ void Car::popShape() {
 void Car::draw()
 {
 	for (int i = 0; i < 3; i++) {
-		GotoXY(getXPos() - 1, getLane() * 5 + i + 2);
+		GotoXY(getXPos() - 1, getLane() * 6 + i + 4);
 		cout << shape[i];
 	}
 }
@@ -125,7 +125,7 @@ void Bike::popShape() {
 void Bike::draw()
 {
 	for (int i = 0; i < 3; i++) {
-		GotoXY(getXPos() - 1, getLane() * 5 + i + 2);
+		GotoXY(getXPos() - 1, getLane() * 6 + i + 4);
 		cout << shape[i];
 	}
 }
@@ -151,7 +151,7 @@ void Truck::popShape() {
 void Truck::draw()
 {
 	for (int i = 0; i < 5; i++) {
-		GotoXY(getXPos() - 1, getLane() * 5 + i + 1);
+		GotoXY(getXPos() - 1, getLane() * 6 + i + 2);
 		cout << shape[i];
 	}
 }

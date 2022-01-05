@@ -4,21 +4,21 @@
 
 Game::Game()
 {
-    xMap = 90;
+    xMap = 120;
     lane = 6;
-    yMap = 5*lane;
+    yMap = 6*(lane + 1);
     Time = 0;
     frameTime = 1;
     level = 1;
     obsList.resize(lane);
-    player.setPosition(30,26);
+    player.setPosition(60,39);
 }
 
 Game::Game(int xMap, int lane)
 {
     this->xMap = xMap;
     this->lane = lane;
-    yMap = 5*lane;
+    yMap = 6*lane;
     Time = 0;
     level = 1;
 }
@@ -45,6 +45,11 @@ void Game::updateFrame()
         }
 
     }
+    /*if (player.levelUp()) {
+        GotoXY()
+        player.setPosition(60, 39);
+        updateLevel();
+    }*/
     addObstacle();
     player.takeKBinput(*this);
 }
@@ -55,7 +60,7 @@ void Game::draw()
     cout << Time;
 
     player.draw();
-    for (int i = 0; i < obsList.size(); ++i)
+    for (int i = 0; i < obsList.size(); ++i) 
         for (int j = 0; j < obsList[i].size(); j++)
             obsList[i][j]->draw();
 }
@@ -64,12 +69,34 @@ void Game::InitDraw()
 {
     GotoXY(95,0);
     cout << "Time: ";
-    for(int i = 1; i <= yMap; ++i)
+    for (int i = 0; i < lane - 1; i++) {
+        GotoXY(3, 7 + i * 6);
+        for (int i = 0; i < 8; i++)
+            cout << "_________      ";
+    }
+    GotoXY(1, 1);
+    TextColor(2);
+    for (int i = 0; i <= xMap - 2; i++) {
+
+        cout << char(22);
+    }
+    GotoXY(1, 37);
+    for (int i = 0; i <= xMap - 2; i++)
+        cout << char(22);
+    TextColor(7);
+    for(int i = 0; i <= yMap + 1; ++i)
     {
-        GotoXY(0, i + 1);
-        cout << "||" << endl;
-        GotoXY(xMap, i + 1);
-        cout << "||" << endl;
+        GotoXY(0, i);
+        cout << char(221) << endl;
+        GotoXY(xMap, i);
+        cout << char(222) << endl;
+    }
+    for (int i = 0; i <= xMap; ++i)
+    {
+        GotoXY(i, 0);
+        cout << char(223);
+        GotoXY(i, yMap + 2);
+        cout << char(223);
     }
 }
 
@@ -80,8 +107,7 @@ int Game::getTime()
 
 void Game::updateLevel()
 {
-   
-    
+    level++;
 }
 
 void Game::outputObs()
@@ -93,27 +119,17 @@ void Game::outputObs()
 
 bool Game::checkCollision()
 {
-    for(int i = 0; i < obsList.size(); ++i)
-    {
-        for (int j = 0; j < obsList[i].size(); j++) {
-            if (player.getYPos() + player.getWidth() >= obsList[i][j]->getLane() * 5)
-            {
-                if (obsList[i][j]->getXPos() + obsList[i][j]->getLength() >= player.getXPos() || player.getXPos() + player.getLength() >= obsList[i][j]->getXPos())
-                {
-                    return true;
-                }
-            }
-
-            if (obsList[i][j]->getLane() * 5 + obsList[i][j]->getWidth() >= player.getYPos())
-            {
-                if (player.getXPos() + player.getLength() >= obsList[i][j]->getXPos() || obsList[i][j]->getXPos() + obsList[i][j]->getLength() >= player.getXPos())
-                {
+    int lane = player.getYPos() / 6;
+    if (lane < 6) {
+        for (int i = 0; i < obsList[lane].size(); i++) {
+            for (int j = player.getXPos(); j < player.getXPos() + player.getLength(); j++) {
+                if (j >= obsList[lane][i]->getXPos() && j < obsList[lane][i]->getXPos() + obsList[lane][i]->getLength() - 2) {
                     return true;
                 }
             }
         }
     }
-    return false;
+   return false;
 }
 
 void Game::addObstacle() {

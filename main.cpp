@@ -9,7 +9,7 @@ int main()
 	cout << "a";*/
 	Game game;
 	// game.updateLevel();
-	Resize(1280, 720);
+	Resize(1280, 760);
 	FixConsoleWindow();
 	game.InitDraw();
 	while(true)
@@ -19,10 +19,10 @@ int main()
 		game.draw();
 		game.updateFrame();
 
-		// if(game.checkCollision())
-		// {
-		// 	break;
-		// }
+		 if(game.checkCollision())
+		 {
+		 	break;
+		 }
 
 		Sleep(10);
 	}

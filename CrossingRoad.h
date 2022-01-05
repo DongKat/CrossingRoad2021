@@ -18,7 +18,7 @@ class Player
 		int xPos;
 		int yPos;
 		int length, width;
-
+		bool levelup;
 	public:
 		Player();
 		Player(int xPos, int yPos, int length, int width);
@@ -30,6 +30,7 @@ class Player
 		int getLength();
 		int getWidth();
 		void clearPlayer();
+		bool levelUp();
 };
 
 class Obstacles
