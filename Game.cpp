@@ -1,4 +1,5 @@
 #include "CrossingRoad.h"
+#include "BuildConsole.h"
 #define PROOF "CROSSROADSAVE"
 
 Game::Game()
