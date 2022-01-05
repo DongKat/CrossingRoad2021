@@ -9,6 +9,8 @@ int main()
 	cout << "a";*/
 	Game game;
 	// game.updateLevel();
+	Resize(1280, 720);
+	FixConsoleWindow();
 	game.InitDraw();
 	while(true)
 	{
