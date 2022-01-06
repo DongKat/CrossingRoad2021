@@ -69,9 +69,6 @@ Dinausor::Dinausor(int xPos, int lane, int length, int width, int speed) : Obsta
 	shape[2] = " \\_/  |__";
 	shape[3] = " \\____/  ";
 	shape[4] = "   |_|_  ";
-	// GotoXY(0, 50);
-	// for (int i = 0; i < 5; i++)
-	// 	cout << shape[i].length() << " ";
 }
 
 void Dinausor::popShape() {
@@ -83,10 +80,12 @@ void Dinausor::popShape() {
 
 void Dinausor::draw()
 {
+	TextColor(4);
 	for (int i = 0; i < 5; i++) {
 		GotoXY(getXPos() - 1, getLane() * 6 + i + 2);
 		cout << shape[i];
 	}
+	TextColor(7);
 }
 
 Car::Car(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed) {
@@ -95,9 +94,6 @@ Car::Car(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos,
 	shape[0] = "     _____     ";
 	shape[1] = shape[1] + "  __/    " + char(254) + "\\___ ";
 	shape[2] = shape[2] + " " + char(192) + i + char(233) + i + i + i + i + i + i + i + char(233) + i + i + char(188);
-	// GotoXY(0, 51);
-	// for (int i = 0; i < 3; i++)
-	// 	cout << shape[i].length() << " ";
 }
 
 void Car::popShape() {
@@ -109,10 +105,12 @@ void Car::popShape() {
 
 void Car::draw()
 {
+	TextColor(9);
 	for (int i = 0; i < 3; i++) {
 		GotoXY(getXPos() - 1, getLane() * 6 + i + 4);
 		cout << shape[i];
 	}
+	TextColor(7);
 }
 
 Bike::Bike(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed) {
@@ -120,9 +118,6 @@ Bike::Bike(int xPos, int lane, int length, int width, int speed) : Obstacles(xPo
 	shape[0] = "     o__   ";
 	shape[1] = "    /_  \\  ";
 	shape[2] = shape[2] + " (" + char(15) + ")  \\ (" + char(15) + ")";
-	// GotoXY(0, 52);
-	// for (int i = 0; i < 3; i++)
-	// 	cout << shape[i].length() << " ";
 }
 
 
@@ -135,10 +130,12 @@ void Bike::popShape() {
 
 void Bike::draw()
 {
+	TextColor(14);
 	for (int i = 0; i < 3; i++) {
 		GotoXY(getXPos() - 1, getLane() * 6 + i + 4);
 		cout << shape[i];
 	}
+	TextColor(7);
 }
 Truck::Truck(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed) {
 	shape.resize(5);
@@ -148,9 +145,6 @@ Truck::Truck(int xPos, int lane, int length, int width, int speed) : Obstacles(x
 	shape[2]= shape[2] + " |              | " + char(254) + " |__ ";
 	shape[3]= " |______________|      |";
 	shape[4]= shape[4] +" " + char(192) + i + i + i + "(o)" + i + i + i + i + i + i + i + i + i + i + i + "(o)" + i + char(188);
-	// GotoXY(0, 53);
-	// for (int i = 0; i < 5; i++)
-	// 	cout << shape[i].length() << " ";
 }
 
 void Truck::popShape() {
@@ -162,8 +156,10 @@ void Truck::popShape() {
 
 void Truck::draw()
 {
+	TextColor(11);
 	for (int i = 0; i < 5; i++) {
 		GotoXY(getXPos() - 1, getLane() * 6 + i + 2);
 		cout << shape[i];
 	}
+	TextColor(7);
 }	  
