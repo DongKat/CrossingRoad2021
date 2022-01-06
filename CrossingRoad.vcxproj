@@ -99,13 +99,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BuildConsole.cpp" />
+    <ClCompile Include="BuildMenu.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Obstacles.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BuildConsole.h" />
+    <ClInclude Include="BuildMenu.h" />
     <ClInclude Include="CrossingRoad.h" />
+    <ClInclude Include="Sound.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="opening.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

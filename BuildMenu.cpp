@@ -30,12 +30,12 @@ void Menu::drawTitle()
 void Menu::drawChoice()
 {
 
-	GotoXy(14, 14);
+	GotoXY(14, 14);
 	cout << "MAIN MENU"; TextColor(15);
 
 	for (int i = 0; i < 6; ++i)
 	{
-		GotoXy(13, y[i]);
+		GotoXY(13, y[i]);
 		cout << list[i];
 	}
 }
@@ -43,7 +43,7 @@ void Menu::clear()
 {
 	for (int i = 14; i < 30; ++i)
 	{
-		GotoXy(26, i);
+		GotoXY(26, i);
 		cout << "                                                                ";
 	}
 }
@@ -54,7 +54,7 @@ void Menu::updateChoice()
 	while (1)
 	{
 		clear();
-		GotoXy(12, y[i]);
+		GotoXY(12, y[i]);
 		TextColor(14);
 		cout << ">"<<list[i];
 		TextColor(15);
@@ -67,7 +67,7 @@ void Menu::updateChoice()
 		case 72: {
 			if (i > 0)
 			{
-				GotoXy(12, y[i]);
+				GotoXY(12, y[i]);
 				TextColor(15);
 				cout <<" "<< list[i];
 				i--;
@@ -76,7 +76,7 @@ void Menu::updateChoice()
 		}
 		case 80: {
 			if (i < 5) {
-				GotoXy(12, y[i]);
+				GotoXY(12, y[i]);
 				TextColor(15);
 				cout <<" "<< list[i];
 				i++;
@@ -87,4 +87,201 @@ void Menu::updateChoice()
 		default: break;
 		}
 	}
+}
+
+void Menu::drawDescription(int x)
+{
+
+	switch (x)
+	{
+	case 0:
+	{
+		GotoXY(51, 14);
+		cout << "DESCRIPTION";
+		GotoXY(27, 16);
+		cout << "Start a new game!";
+		break;
+	}
+	case 1:
+	{
+		GotoXY(51, 14);
+		cout << "DESCRIPTION";
+		GotoXY(27, 16);
+		cout << "Start with an existed game!";
+		break;
+	}
+	case 2:
+	{
+		GotoXY(51, 14);
+		cout << "DESCRIPTION";
+		GotoXY(27, 16);
+		cout << "The object of the game, is to cross the street without getting" << endl;
+		GotoXY(27, 17);
+		cout << "hit by any vehicles or animals";
+		break;
+
+	}
+	case 3:
+	{
+		GotoXY(51, 14);
+		cout << "DESCRIPTION";
+		GotoXY(27, 16);
+		cout << "Press Enter to open the setting menu";
+		while (_getch() == 13)
+		{
+			setting();
+			TextColor(15);
+			GotoXY(51, 14);
+			cout << "DESCRIPTION";
+			GotoXY(27, 16);
+			cout << "Press Enter to open the setting menu";
+		}
+		break;
+
+	}
+	case 4:
+	{
+		GotoXY(52, 14);
+		cout << "ABOUT US!";
+		GotoXY(27, 16);
+		cout << "UNIVERSITY OF SCIENCE - 20APCS2 - GROUP 2" << endl;
+		GotoXY(27, 18);
+		cout << "PROJECT ROAD CROSSING GAME";
+		GotoXY(27, 20);
+		cout << "1. 20125020 - Le Quoc Anh";
+		GotoXY(27, 22);
+		cout << "2. 20125087 - Huynh Ba Dong Cat";
+		GotoXY(27, 24);
+		cout << "3. 20125089 - Quang The Cuong";
+		GotoXY(27, 26);
+		cout << "4. 20125105 - Pham Tan Phat";
+		break;
+
+	}
+	case 5:
+	{
+		GotoXY(52, 14);
+		cout << "DESCRIPTION";
+		GotoXY(27, 16);
+		cout << "Press Enter to exit the game" << endl;
+		break;
+
+	}
+	default:break;
+	}
+}
+void Menu::drawSettings()
+{
+	GotoXY(28, 16);
+	cout << settingList[0];
+
+	GotoXY(28, 18);
+	cout << settingList[1];
+
+}
+
+void Menu::setting()
+{
+	clear();
+	GotoXY(53, 14);
+	cout << "SETTING";
+	GotoXY(27, 29);
+	cout << "Press Enter to select";
+	drawSettings();
+	updateSetting();
+}
+
+
+void Menu::updateSetting()
+{
+	int i = 0;
+	while (1)
+	{
+		TextColor(14);
+		GotoXY(27, y[i]);
+		cout << ">" << settingList[i];
+		switch (_getch()) {
+		case 72:
+		{
+			if (i > 0)
+			{
+				GotoXY(27, y[i]);
+				TextColor(15);
+				cout << " " << settingList[i];
+				i--;
+			}
+			break;
+		}
+		case 80:
+		{
+			if (i < 1)
+			{
+				GotoXY(27, y[i]);
+				TextColor(15);
+				cout << " " << settingList[i];
+				i++;
+			}
+			break;
+		}
+		case 13:
+		{
+			if (i == 1)
+			{
+				clear();
+				return;
+			}
+			else updateSound();
+			break;
+
+		}
+		default: break;
+		}
+
+
+	}
+}
+
+void Menu::updateSound()
+{
+	TextColor(15);
+	GotoXY(27, 28);
+	cout << "Press Enter to turn on/off the sound";
+	GotoXY(27, 29);
+	cout << "Press Left button to go back to setting menu";
+	GotoXY(35, y[0]);
+	if (!music->getState())
+		TextColor(12);
+	else
+		TextColor(10);
+	cout << "<<" << musicState[music->getState()] << ">> ";
+	while (1)
+	{
+		while (_getch() == 13)
+		{
+			music->switchState();
+			if (!music->getState())
+				music->play("../GameSound/sound.mp3");
+			else
+				music->stop("../GameSound/sound.mp3");
+			GotoXY(35, y[0]);
+			if (!music->getState())
+				TextColor(12);
+			else
+				TextColor(10);
+			cout << "<<" << musicState[music->getState()] << ">> ";
+
+		}
+		if (_getch() == 75) break;
+	}
+	GotoXY(35, y[0]);
+	cout << "        ";
+	TextColor(15);
+	GotoXY(27, 28);
+	cout << "                                            ";
+	GotoXY(27, 29);
+	cout << "                                            ";
+	GotoXY(27, 29);
+	cout << "Press Enter to select";
+
+
 }

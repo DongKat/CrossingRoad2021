@@ -12,7 +12,7 @@ void ShowConsoleCursor(bool showFlag);
 void Resize(int, int);
 void FixConsoleWindow();
 void TextColor(int x);
-void GotoXy(int x, int y);
+void GotoXY(int x, int y);
 void clrscr();
 void drawBoard(int, int, int, int);
 #endif

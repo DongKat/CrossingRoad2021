@@ -1,7 +1,5 @@
 ﻿#include "CrossingRoad.h"
 
-void GotoXY(int x, int y);
-
 Obstacles::Obstacles(int xPos, int lane, int length, int width, int speed)
 {
 	this->xPos = xPos;

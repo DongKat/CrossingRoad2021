@@ -42,7 +42,7 @@ void TextColor(int x)
 }
 
 // Hàm dịch chuyển con trỏ đến tọa độ x, y.
-void GotoXy(int x, int y)
+void GotoXY(int x, int y)
 {
 	COORD coord;
 	coord.X = x;
@@ -72,36 +72,36 @@ void drawBoard(int xTrai, int yTrai, int xPhai, int yPhai)
 {
 	//vẽ trước 4 góc
 	//góc trên bên trái
-	GotoXy(xTrai, yTrai); cout << char(218);
+	GotoXY(xTrai, yTrai); cout << char(218);
 	//m_map[yTrai][xTrai] = 218;
 	//vẽ góc trên bên phải
-	GotoXy(xPhai, yTrai); cout << char(191);
+	GotoXY(xPhai, yTrai); cout << char(191);
 	//m_map[yTrai][xPhai] = 191;
 	//vẽ góc dưới bên trái
-	GotoXy(xTrai, yPhai); cout << char(192);
+	GotoXY(xTrai, yPhai); cout << char(192);
 	//m_map[yPhai][xTrai] = 192;
 	//vẽ góc dưới bên phải
 	//m_map[yPhai][xPhai] = 217;
-	GotoXy(xPhai, yPhai); cout << char(217);
+	GotoXY(xPhai, yPhai); cout << char(217);
 
 	//vẽ chiều ngang bên trên
 	for (int i = xTrai + 1; i < xPhai; i++) {
-		GotoXy(i, yTrai); cout << char(196);
+		GotoXY(i, yTrai); cout << char(196);
 		//m_map[yTrai][i] = 196;
 	}
 	//vẽ chiều ngang bên dưới
 	for (int i = xTrai + 1; i < xPhai; i++) {
-		GotoXy(i, yPhai); cout << char(196);
+		GotoXY(i, yPhai); cout << char(196);
 		//m_map[yPhai][i] = 196;
 	}
 	//vẽ chiều dọc bên trái
 	for (int i = yTrai + 1; i < yPhai; i++) {
-		GotoXy(xTrai, i); cout << char(179);
+		GotoXY(xTrai, i); cout << char(179);
 		//m_map[i][xTrai] = 179;
 	}
 	//vẽ chiều dọc bên phải
 	for (int i = yTrai + 1; i < yPhai; i++) {
-		GotoXy(xPhai, i); cout << char(179);
+		GotoXY(xPhai, i); cout << char(179);
 		//m_map[i][xPhai] = 179;
 	}
 }
