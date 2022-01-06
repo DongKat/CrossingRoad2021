@@ -2,10 +2,24 @@
 
 void Sound::play(string path)
 {
-	PlaySound(TEXT(path.c_str()), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+	string dir = "play " + path + " repeat";
+	mciSendString(dir.c_str(), NULL, 0, NULL);
 }
 
 void Sound::stop(string path)
 {
-	PlaySound(NULL, NULL, NULL);
+	string dir = "close " + path;
+	mciSendString(dir.c_str(), NULL, 0, NULL);
+}
+
+void Sound::pause(string path)
+{
+	string dir = "pause " + path;
+	mciSendString(dir.c_str(), NULL, 0, NULL);
+}
+
+void Sound::resume(string path)
+{
+	string dir = "resume " + path;
+	mciSendString(dir.c_str(), NULL, 0, NULL);
 }
