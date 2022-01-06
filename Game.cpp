@@ -209,16 +209,33 @@ void Game::addObstacle() {
 }
 void Game::saveGame(string name)
 {
-	// Get save file name
-	string name;                            // This way so I don't have to deal with char*
+	// Get save file name                            // This way so I don't have to deal with char*
 	getline(cin, name);
 	FILE* file = fopen(name.c_str(), "wb");	// Write file in binary mode
 	if (!file)
 		throw runtime_error("Oh no, something go wrong. Game::saveGame");
 
+	int tmp_x, tmp_y;
+
 	fwrite(PROOF, sizeof(char), strlen(PROOF), file);   // Write certificate
 	fwrite(&level, sizeof(int), 1, file);               // Write level
 
+	//tmp_x = player.getXPos();
+	//tmp_y = player.getYPos();
+	fwrite(&player.xPos, sizeof(int), 1, file);			// Write player position
+	fwrite(&player.yPos, sizeof(int), 1, file);			// Write player position
+	fwrite(&lane, sizeof(int), 1, file);			// Write number of lanes, which always is 6 tho
+	for (int i = 0; i < lane; i++)
+	{
+		tmp_x = obsList[i].size();
+		fwrite(&tmp_x, sizeof(int), 1, file);
+		for (int j = 0; j < obsList[i].size(); j++)
+		{
+			tmp_x = obsList[lane][j]->getXPos();
+			fwrite(&tmp_x, sizeof(int), 1, file);	// Write obstacle XPos
+		}
+	}
+	fwrite(&trafficLight, sizeof(bool), 1, file); // Write traffic light
 	fclose(file);
 }
 
@@ -239,7 +256,63 @@ void Game::loadGame(string name)
 		throw runtime_error("Oh no, something go wrong. Game::loadGame");
 	}
 
+	int tmp_x, tmp_y, speed = 2;
 	fread(&level, sizeof(int), 1, file);        // Read saved game level
+
+	tmp_x = player.getXPos();
+	tmp_y = player.getYPos();
+	fread(&tmp_x, sizeof(int), 1, file);			// Read player x position
+	fread(&tmp_y, sizeof(int), 1, file);			// Read player y position
+	fread(&lane, sizeof(int), 1, file);				// Read number of lane, tho it's default 6
+
+	obsList.resize(lane);
+	Obstacles* obs = nullptr;
+	for (int i = 0; i < lane; i++)
+	{
+		fread(&tmp_x, sizeof(int), 1, file);		// Read Lane size
+		for (int j = 0; j < tmp_x; j++)
+		{
+			fread(&tmp_y, sizeof(int), 1, file);	// Read obstacle XPos, pls don't mind tmp_y, it means second temp var
+			switch (j) {
+			case 0:
+			{
+				obs = new Car(tmp_y, 0, 15, 3, speed);
+				break;
+			}
+			case 1:
+			{
+				obs = new Truck(tmp_y, 1, 24, 5, speed);
+				break;
+			}
+			case 2:
+			{
+				obs = new Bike(tmp_y, 2, 11, 3, speed);
+				break;
+			}
+			case 3:
+			{
+				obs = new Dinausor(tmp_y, 3, 9, 5, speed);
+				break;
+			}
+			case 4:
+			{
+				obs = new Dinausor(tmp_y, 4, 9, 5, speed);
+				break;
+			}
+			case 5:
+			{
+				obs = new Dinausor(tmp_y, 5, 9, 5, speed);
+				break;
+			}
+			default:
+			{
+				break;
+			}
+			}
+			obsList[i].push_back(obs);
+		}
+	}
+	fread(&trafficLight, sizeof(bool), 1, file); // Read traffic light state
 
 	fclose(file);
 }
