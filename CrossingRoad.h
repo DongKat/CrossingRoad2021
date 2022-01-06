@@ -133,6 +133,7 @@ public:
 	void saveGame(string name);
 	void levelUpAnimation();
 	void gameOverAnimation();
+	void resetTrafficLight();
 };
 
 #endif 

@@ -50,9 +50,9 @@ void Player::drawDead()
 
 void Player::takeKBinput(Game* game)
 {
-	if (game->Time == 100) 
+	if (game->Time == 200) 
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-	if (game->Time > 100) {
+	if (game->Time > 200) {
 		if (kbhit())
 		{
 			char input = getch();

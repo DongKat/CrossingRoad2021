@@ -214,6 +214,7 @@ void Game::updateLevel()
 	player->clearPlayer();
 	player->setPosition(60, 39);
 	player->resetLevelUp();
+	resetTrafficLight();
 	for (int i = 0; i < lane; i++) {
 		for (int j = 0; j < obsList[i].size(); j++) {
 			obsList[i][j]->clearObstacle();
@@ -258,7 +259,7 @@ void Game::addObstacle() {
 	for (int j = 0; j < lane; j++)
 	{
 		Obstacles* obs = nullptr;
-		if (rand() % (300 / level) == 0)
+		if (rand() % (300 / level) == 0 && trafficLight[j] == true)
 		{
 			switch (j) {
 			case 0:
@@ -437,4 +438,9 @@ void Game::loadGame(string name)
 	fread(&trafficLight, sizeof(bool), 1, file); // Read traffic light state
 
 	fclose(file);
+}
+
+void Game::resetTrafficLight() {
+	for (int i = 0; i < lane; i++)
+		trafficLight[i] = true;
 }
