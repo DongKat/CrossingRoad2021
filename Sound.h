@@ -11,12 +11,9 @@ using namespace std;
 class Sound
 {
 private:
-	bool turn; 
+	bool turn;
 public:
-	Sound() 
-	{
-		turn = true;
-	}
+	Sound() : turn(true) {};
 	bool getState() { return turn; }
 	void switchState() { turn = !turn; }
 	void play(string path);
