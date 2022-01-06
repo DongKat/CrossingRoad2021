@@ -1,34 +1,22 @@
-#include "CrossingRoad.h"
-
-void GotoXY(int x, int y);
-
+#include "BuildMenu.h"
+class PlayGame
+{
+public:
+	Menu gameMenu;
+	Sound gameSound;
+};
 int main()
 {
-	/*Player p;
-	p.draw();
-	cout << "a";*/
-	Game game;
-	// game.updateLevel();
-	Resize(1280, 760);
 	FixConsoleWindow();
-	game.InitDraw();
-	while (true)
+	PlayGame player;
+	player.gameMenu.drawMenu();
+	(player.gameMenu).music = &player.gameSound;
+	(player.gameMenu).music->play("../GameSound/sound.mp3");
+	while (1)
 	{
-
-
-		game.draw();
-		game.updateFrame();
-
-		if (game.checkCollision())
-		{
-			// display Game over screen
-			break;
-		}
-
-		Sleep(10);
+		player.gameMenu.drawChoice();
+		player.gameMenu.updateChoice();
 	}
 
-
-	system("pause");
 	return 0;
 }

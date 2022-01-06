@@ -1,35 +1,25 @@
 #include "Sound.h"
 
-void SoundGame::turnOn()
+void Sound::play(string file)
 {
-	state = true;
+	string dir = "play " + file + " repeat";
+	mciSendString((LPCWSTR)dir.c_str(), NULL, 0, NULL);
 }
 
-void SoundGame::turnOff()
+void Sound::stop(string file)
 {
-	state = false;
+	string dir = "close " + file;
+	mciSendString((LPCWSTR)dir.c_str(), NULL, 0, NULL);
 }
 
-void SoundGame::play(string path)
+void Sound::pause(string file)
 {
-	string dir = "play " + path + " repeat";
-	mciSendString(dir.c_str(), NULL, 0, NULL);
+	string dir = "pause " + file;
+	mciSendString((LPCWSTR)dir.c_str(), NULL, 0, NULL);
 }
 
-void SoundGame::stop(string path)
+void Sound::resume(string file)
 {
-	string dir = "close " + path;
-	mciSendString(dir.c_str(), NULL, 0, NULL);
-}
-
-void SoundGame::pause(string path)
-{
-	string dir = "pause " + path;
-	mciSendString(dir.c_str(), NULL, 0, NULL);
-}
-
-void SoundGame::resume(string path)
-{
-	string dir = "resume " + path;
-	mciSendString(dir.c_str(), NULL, 0, NULL);
+	string dir = "resume " + file;
+	mciSendString((LPCWSTR)dir.c_str(), NULL, 0, NULL);
 }

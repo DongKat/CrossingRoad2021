@@ -1,24 +1,25 @@
-#pragma once
+#ifndef sound
+#define sound
 #include <Windows.h>
-#include <mmsystem.h>
-#include <mciapi.h>
 #include <string>
-//these two headers are already included in the <Windows.h> header
 #pragma comment(lib, "Winmm.lib")
 
 using namespace std;
 
-class SoundGame {
+class Sound
+{
 private:
-	bool state; //True: play, False: mute
+	bool turn; 
 public:
-	SoundGame() {
-		state = true;
+	Sound() 
+	{
+		turn = true;
 	}
-	void turnOn();
-	void turnOff();
-	void play(string path);
-	void stop(string path);
-	void pause(string path);
-	void resume(string path);
+	bool getState() { return turn; }
+	void switchState() { turn = !turn; }
+	void play(string file);
+	void stop(string file);
+	void pause(string file);
+	void resume(string file);
 };
+#endif
