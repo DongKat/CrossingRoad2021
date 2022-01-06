@@ -131,6 +131,7 @@ public:
 	void loadGame(string name);
 	void saveGame(string name);
 	void levelUpAnimation();
+	void gameOverAnimation();
 };
 
 #endif 
