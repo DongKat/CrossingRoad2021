@@ -2,8 +2,7 @@
 
 void Sound::play(string path)
 {
-	string dir = "play " + path + " repeat";
-	PlaySound((LPCWSTR)path.c_str(), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+	PlaySound(TEXT(path.c_str()), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 }
 
 void Sound::stop(string path)

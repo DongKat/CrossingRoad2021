@@ -9,6 +9,7 @@
 #include <conio.h>
 #include "BuildConsole.h"
 #include "Sound.h"
+#include "BuildMenu.h"
 
 using namespace std;
 
