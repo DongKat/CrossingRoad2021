@@ -18,7 +18,5 @@ public:
 	void switchState() { turn = !turn; }
 	void play(string path);
 	void stop(string path);
-	void pause(string path);
-	void resume(string path);
 };
 #endif
