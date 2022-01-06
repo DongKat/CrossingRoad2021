@@ -77,6 +77,18 @@ void Player::takeKBinput(Game game)
 				cout << " ";
 				yPos += 6;
 			}
+			else if ((input == 'l' || input == 'L')) // Hit Load game
+			{
+
+			}
+			else if ((input == 'T' || input == 'T')) // Hit Save game
+			{
+
+			}
+			else if (input == 27) // Hit ESC key
+			{
+				system("pause");
+			}
 		}
 	}
 }

@@ -12,22 +12,23 @@ int main()
 	Resize(1280, 760);
 	FixConsoleWindow();
 	game.InitDraw();
-	while(true)
+	while (true)
 	{
-		
-		
+
+
 		game.draw();
 		game.updateFrame();
 
-		 if(game.checkCollision())
-		 {
-		 	break;
-		 }
+		if (game.checkCollision())
+		{
+			// display Game over screen
+			break;
+		}
 
 		Sleep(10);
 	}
 
-	
+
 	system("pause");
 	return 0;
 }

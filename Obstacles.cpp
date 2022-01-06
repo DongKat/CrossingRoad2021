@@ -154,9 +154,4 @@ void Truck::draw()
 		GotoXY(getXPos() - 1, getLane() * 6 + i + 2);
 		cout << shape[i];
 	}
-}
-		  
-          
-          
-		  
-		  
+}	  
