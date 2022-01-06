@@ -186,6 +186,12 @@ void Game::draw()
 			cout << char(177) << char(177);
 		}
 	}
+	GotoXY(1, 1);
+	TextColor(rand() % 2 + 10);
+	for (int i = 0; i <= xMap - 2; i++) {
+
+		cout << char(22);
+	}
 	TextColor(7);
 }
 
@@ -203,15 +209,15 @@ void Game::InitDraw()
 			cout << "_________      ";
 	}
 	GotoXY(1, 1);
-	TextColor(2);
 	for (int i = 0; i <= xMap - 2; i++) {
 
 		cout << char(22);
 	}
+	TextColor(10);
 	GotoXY(1, 37);
 	for (int i = 0; i <= xMap - 2; i++)
 		cout << char(22);
-	TextColor(7);
+	TextColor(8);
 	for (int i = 0; i <= yMap + 1; ++i)
 	{
 		GotoXY(0, i);
@@ -226,6 +232,7 @@ void Game::InitDraw()
 		GotoXY(i, yMap + 2);
 		cout << char(223);
 	}
+	TextColor(7);
 }
 
 void Game::levelUpAnimation()
