@@ -13,13 +13,13 @@ void SoundGame::turnOff()
 void SoundGame::play(string path)
 {
 	string dir = "play " + path + " repeat";
-	PlaySound(path), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+	PlaySound(path, NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 }
 
 void SoundGame::stop(string path)
 {
 	string dir = "close " + path;
-	PlaySound(path, NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+	PlaySound(NULL, NULL, NULL;
 }
 
 //void SoundGame::pause(string path)
