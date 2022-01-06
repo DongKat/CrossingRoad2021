@@ -123,10 +123,10 @@ int Player::getWidth()
 
 void Player::clearPlayer()
 {
-	for(int i = 0; i < this->width; i++)
+	for (int i = 0; i < this->width; i++)
 	{
 		GotoXY(xPos, yPos + i);
-		for(int j = 0; j < this->length; j++)
+		for (int j = 0; j < this->length; j++)
 			cout << " ";
 	}
 }

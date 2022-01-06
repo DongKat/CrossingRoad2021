@@ -31,6 +31,8 @@ public:
 	int getWidth();
 	void clearPlayer();
 	bool levelUp();
+	
+	friend class Game;
 	void resetLevelUp();
 };
 
