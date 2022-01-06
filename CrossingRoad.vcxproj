@@ -100,7 +100,6 @@
   <ItemGroup>
     <ClCompile Include="BuildConsole.cpp" />
     <ClCompile Include="BuildMenu.cpp" />
-    <ClCompile Include="DrawMenu.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Obstacles.cpp" />
@@ -115,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="opening.mp3" />
-    <Media Include="sound.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
