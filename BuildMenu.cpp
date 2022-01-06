@@ -1,8 +1,8 @@
 #include "BuildMenu.h"
 
-Menu::Menu()
+Menu::Menu(Sound* s)
 {
-	
+	music = s;
 }
 void Menu::drawMenu()
 {
@@ -15,9 +15,9 @@ void Menu::drawMenu()
 void Menu::drawTitle()
 {
 	TextColor(9);
-	for (int i = 0; i < 6; i++) 
+	for (int i = 0; i < 6; i++)
 	{
-		cout << title[i]<<endl;
+		cout << title[i] << endl;
 	}
 	TextColor(12);
 	for (int i = 6; i < 12; i++)
@@ -47,7 +47,7 @@ void Menu::clear()
 		cout << "                                                                ";
 	}
 }
-void Menu::updateChoice()
+int Menu::updateChoice()
 {
 	int i = 0;
 	char x;
@@ -56,20 +56,20 @@ void Menu::updateChoice()
 		clear();
 		GotoXY(12, y[i]);
 		TextColor(14);
-		cout << ">"<<list[i];
+		cout << ">" << list[i];
 		TextColor(15);
 		drawDescription(i);
 		x = _getch();
 		if (x == -32)
 			x = _getch();
-		switch (x) 
+		switch (x)
 		{
 		case 72: {
 			if (i > 0)
 			{
 				GotoXY(12, y[i]);
 				TextColor(15);
-				cout <<" "<< list[i];
+				cout << " " << list[i];
 				i--;
 			}
 			break;
@@ -78,15 +78,35 @@ void Menu::updateChoice()
 			if (i < 5) {
 				GotoXY(12, y[i]);
 				TextColor(15);
-				cout <<" "<< list[i];
+				cout << " " << list[i];
 				i++;
 			}
 			break;
 		}
-		case 13: {if (i == 5) return; break; }
+		case 13: {
+			if (i == 0)
+			{
+				return 0;
+			}
+			if (i == 1)
+			{
+				return 1;
+			}
+			if (i == 5) return 5; 
+			break; 
+		}
 		default: break;
 		}
 	}
+}
+
+string Menu::LoadGame()
+{
+	string temp;
+	GotoXY(27, 16); cout << "                                                   ";
+	GotoXY(27, 16);	cout << "Enter your save file name:";
+	GotoXY(27, 18); getline(cin, temp);
+	return temp;
 }
 
 void Menu::drawDescription(int x)
@@ -259,7 +279,7 @@ void Menu::updateSound()
 		while (_getch() == 13)
 		{
 			music->switchState();
-			if (!music->getState())
+			if (music->getState())
 				music->play("../GameSound/sound.mp3");
 			else
 				music->stop("../GameSound/sound.mp3");

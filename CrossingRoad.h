@@ -25,7 +25,7 @@ public:
 	Player();
 	Player(int xPos, int yPos, int length, int width);
 	void draw();
-	void takeKBinput(Game game);
+	void takeKBinput(Game* game);
 	void setPosition(int xPos, int yPos);
 	int getXPos();
 	int getYPos();
@@ -114,11 +114,11 @@ private:
 	int frameTime;
 	int level;
 	bool trafficLight;
-	Player player;
+	Player* player;
 	vector<vector<Obstacles*>> obsList;
 public:
 	Game();
-	Game(int xMap, int lane);
+	Game(int xMap, int lane); // Probably never use lol - DCat -
 	void updateLevel();
 	void updateFrame();
 	void InitDraw();
@@ -127,7 +127,7 @@ public:
 	void outputObs();
 	bool checkCollision();
 	void addObstacle();
-	friend void Player::takeKBinput(Game game);
+	friend void Player::takeKBinput(Game* game);
 	void loadGame(string name);
 	void saveGame(string name);
 	void levelUpAnimation();

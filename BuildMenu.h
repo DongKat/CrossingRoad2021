@@ -30,20 +30,22 @@ private:
 		"               __________******    ***    ***    ******       *******     *******    ***   ***    ****     ******_____/"
 	};
 	int levelStart = 0;
-	
+
 	string musicState[2] = { "OFF", "ON" };
 	string list[6] = { "New game", "Load Game","Instruction", "Settings","About", "Exit" };
 	string settingList[2] = { "Music ", "Exit" };
-	int y[6] = {  16, 18, 20,22,24,26 };
+	int y[6] = { 16, 18, 20,22,24,26 };
 
 
 public:
 	Sound* music;
 	Menu();
+	Menu(Sound* s);
 	void drawTitle();
 	void drawMenu();
 	void drawChoice();
-	void updateChoice();
+	int updateChoice();
+	string LoadGame(); // DCat
 	void drawDescription(int x);
 	void drawSettings();
 	void setting();

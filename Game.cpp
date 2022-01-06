@@ -12,10 +12,11 @@ Game::Game()
 	level = 1;
 	trafficLight = true;    // DCat: True = Green, False = red
 	obsList.resize(lane);
-	player.setPosition(60, 39);
+	player = new Player;
+	player->setPosition(60, 39);
 }
 
-Game::Game(int xMap, int lane)
+Game::Game(int xMap, int lane) 
 {
 	this->xMap = xMap;
 	this->lane = lane;
@@ -46,14 +47,14 @@ void Game::updateFrame()
 		}
 
 	}
-	if (player.levelUp()) 
+	if (player->levelUp()) 
 	{
 		levelUpAnimation();
 		InitDraw();
 		updateLevel();
 	}
 	addObstacle();
-	player.takeKBinput(*this);
+	player->takeKBinput(this);
 }
 
 void Game::draw()
@@ -63,10 +64,10 @@ void Game::draw()
 	GotoXY(122, 2);
 	cout << "Level: " << level;
 	GotoXY(122, 4);
-	cout << "Player: x: " << player.getXPos() << " y: " << player.getYPos();
+	cout << "Player: x: " << player->getXPos() << " y: " << player->getYPos();
 
-	player.draw();
-	for (int i = 0; i < obsList.size(); ++i)
+	player->draw();
+	for (int i = 0; i < lane; i++)
 		for (int j = 0; j < obsList[i].size(); j++)
 			obsList[i][j]->draw();
 }
@@ -127,16 +128,16 @@ void Game::levelUpAnimation()
 	for(int i = 0; i < strlen(levelA); i++)
 	{
 		cout << levelA[i];
-		Sleep(80);
+		Sleep(20);
 	}
 	cout << level + 1;
-	Sleep(1000);
+	Sleep(300);
 	clrscr();
 }
 
 void Game::gameOverAnimation()
 {
-	player.drawDead();
+	player->drawDead();
 	Sleep(1500);
 
 	for(int i = 0; i < 3; ++i)
@@ -163,9 +164,9 @@ int Game::getTime()
 
 void Game::updateLevel()
 {
-	player.clearPlayer();
-	player.setPosition(60, 39);
-	player.resetLevelUp();
+	player->clearPlayer();
+	player->setPosition(60, 39);
+	player->resetLevelUp();
 	for (int i = 0; i < lane; i++) {
 		for (int j = 0; j < obsList[i].size(); j++) {
 			obsList[i][j]->clearObstacle();
@@ -187,10 +188,10 @@ void Game::outputObs()
 
 bool Game::checkCollision()
 {
-	int lane = player.getYPos() / 6;
+	int lane = player->getYPos() / 6;
 	if (lane < 6) {
 		for (int i = 0; i < obsList[lane].size(); i++) {
-			for (int j = player.getXPos(); j < player.getXPos() + player.getLength(); j++) {
+			for (int j = player->getXPos(); j < player->getXPos() + player->getLength(); j++) {
 				if (j >= obsList[lane][i]->getXPos() && j < obsList[lane][i]->getXPos() + obsList[lane][i]->getLength() - 1) {
 					return true;
 				}
@@ -204,7 +205,7 @@ void Game::addObstacle() {
 	// Lane 0, 1, 2 for Vehicles
 	// Lane 3, 4, 5 for Animals
 
-	int speed = 2;
+	int speed = 11 - level * 2;
 	for (int j = 0; j < lane; j++)
 	{
 		Obstacles* obs = nullptr;
@@ -280,20 +281,18 @@ void Game::saveGame(string name)
 {
 	// Get save file name    
 	/*string name;	*/	// This way so I don't have to deal with char*
-	getline(cin, name);
 	FILE* file = fopen(name.c_str(), "wb");	// Write file in binary mode
 	if (!file)
-		throw runtime_error("Oh no, something go wrong. Game::saveGame");
+		throw runtime_error("Save error");
 
 	int tmp_x, tmp_y;
 
 	fwrite(PROOF, sizeof(char), strlen(PROOF), file);   // Write certificate
 	fwrite(&level, sizeof(int), 1, file);               // Write level
 
-	//tmp_x = player.getXPos();
-	//tmp_y = player.getYPos();
-	//fwrite(&player.getXPos(), sizeof(int), 1, file);			// Write player position
-	//fwrite(&player.getYPos(), sizeof(int), 1, file);			// Write player position
+	
+	fwrite(&player->xPos, sizeof(int), 1, file);			// Write player position
+	fwrite(&player->yPos, sizeof(int), 1, file);			// Write player position
 	fwrite(&lane, sizeof(int), 1, file);			// Write number of lanes, which always is 6 tho
 	for (int i = 0; i < lane; i++)
 	{
@@ -301,7 +300,7 @@ void Game::saveGame(string name)
 		fwrite(&tmp_x, sizeof(int), 1, file);
 		for (int j = 0; j < obsList[i].size(); j++)
 		{
-			tmp_x = obsList[lane][j]->getXPos();
+			tmp_x = obsList[i][j]->getXPos();
 			fwrite(&tmp_x, sizeof(int), 1, file);	// Write obstacle XPos
 		}
 	}
@@ -312,38 +311,39 @@ void Game::saveGame(string name)
 void Game::loadGame(string name)
 {
 	// Get save file name
-	getline(cin, name);
 	FILE* file = fopen(name.c_str(), "rb");
 
 	if (!file)
-		throw runtime_error("Oh no, something go wrong. Game::loadGame");
+		throw runtime_error("Load Error");
 
 	char token[50];
 	fread(token, sizeof(char), strlen(PROOF), file);
 	token[strlen(PROOF)] = '\0';
 	if (strcmp(token, PROOF)) {
 		fclose(file);
-		throw runtime_error("Oh no, something go wrong. Game::loadGame");
+		throw runtime_error("Load Error");
 	}
 
 	int tmp_x, tmp_y, speed = 2;
 	fread(&level, sizeof(int), 1, file);        // Read saved game level
 
-	tmp_x = player.getXPos();
-	tmp_y = player.getYPos();
-	fread(&tmp_x, sizeof(int), 1, file);			// Read player x position
-	fread(&tmp_y, sizeof(int), 1, file);			// Read player y position
+	fread(&player->xPos, sizeof(int), 1, file);			// Read player x position
+	fread(&player->yPos, sizeof(int), 1, file);			// Read player y position
 	fread(&lane, sizeof(int), 1, file);				// Read number of lane, tho it's default 6
+
+	// Clear screen
+	
 
 	obsList.resize(lane);
 	Obstacles* obs = nullptr;
 	for (int i = 0; i < lane; i++)
 	{
+		obsList[i].clear();
 		fread(&tmp_x, sizeof(int), 1, file);		// Read Lane size
 		for (int j = 0; j < tmp_x; j++)
 		{
 			fread(&tmp_y, sizeof(int), 1, file);	// Read obstacle XPos, pls don't mind tmp_y, it means second temp var
-			switch (j) {
+			switch (i) {
 			case 0:
 			{
 				obs = new Car(tmp_y, 0, 15, 3, speed);

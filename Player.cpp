@@ -48,11 +48,11 @@ void Player::drawDead()
 	GotoXY(xPos, yPos + 3); cout << " |_  |_";
 }
 
-void Player::takeKBinput(Game game)
+void Player::takeKBinput(Game* game)
 {
-	if (game.Time == 100)
+	if (game->Time == 100) 
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-	if (game.Time > 100) {
+	if (game->Time > 100) {
 		if (kbhit())
 		{
 			char input = getch();
@@ -63,7 +63,7 @@ void Player::takeKBinput(Game game)
 				cout << " ";
 				xPos -= 3;
 			}
-			else if ((input == 'd' || input == 'D') && xPos < game.xMap - this->length - 2)
+			else if ((input == 'd' || input == 'D') && xPos < game->xMap - this->length - 2)
 			{
 				clearPlayer();
 				GotoXY(xPos, yPos);
@@ -80,7 +80,7 @@ void Player::takeKBinput(Game game)
 				else
 					levelup = true;
 			}
-			else if ((input == 's' || input == 'S') && yPos <= game.yMap - this->width)
+			else if ((input == 's' || input == 'S') && yPos <= game->yMap - this->width)
 			{
 				clearPlayer();
 				GotoXY(xPos, yPos);
@@ -89,18 +89,46 @@ void Player::takeKBinput(Game game)
 			}
 			else if ((input == 'l' || input == 'L')) // Hit Load game
 			{
-
+				try
+				{
+					string temp;
+					TextColor(12);		GotoXY(128, 27); cout << "LOAD GAME ";
+					TextColor(6);		GotoXY(128, 30); cout << "Enter save file name: " << endl;
+					cin.clear();
+					GotoXY(128, 32);	getline(cin, temp);
+					TextColor(15);
+					game->loadGame(temp);
+					clrscr();
+					game->InitDraw();
+				}
+				catch (runtime_error e)
+				{
+					GotoXY(128, 34); cout << e.what();
+				}
 			}
 			else if ((input == 't' || input == 'T')) // Hit Save game
 			{
-
+				try
+				{
+					string temp;
+					TextColor(12); GotoXY(128, 27); cout << "SAVE GAME ";
+					TextColor(6); GotoXY(128, 30); cout << "Enter save file name: " << endl;
+					cin.clear();
+					GotoXY(128, 32);	getline(cin, temp);
+					TextColor(15);
+					game->saveGame(temp);
+				}
+				catch (runtime_error e)
+				{
+					GotoXY(128, 34); cout << e.what();
+				}
 			}
 			else if ((input == 'p' || input == 'P'))
 			{
 				int i = 0;
-				TextColor(12); GotoXY(130, 27); cout << "PAUSE ";
-				TextColor(6); GotoXY(130, 30); cout << "RESUME " << endl;
-				TextColor(15); GotoXY(130, 32); cout << "EXIT  " << endl;
+				TextColor(12); GotoXY(128, 27); cout << "PAUSE ";
+				TextColor(6); GotoXY(128, 30); cout << "RESUME " << endl;
+				TextColor(15); GotoXY(128, 32); cout << "EXIT  " << endl;
 
 				while (true)
 				{
@@ -123,27 +151,28 @@ void Player::takeKBinput(Game game)
 							break;
 						}
 						TextColor(6);
-						GotoXY(130, 30); cout << "RESUME " << endl;
+						GotoXY(128, 30); cout << "RESUME " << endl;
 						TextColor(15);
-						GotoXY(130, 32); cout << "EXIT  " << endl;
+						GotoXY(128, 32); cout << "EXIT  " << endl;
 					}
 					if (i == 1)
 					{
 						if (input == 43)
 						{
-							// Exit to main menu
+							// Exit to main memu
 							break;
 						}
 						TextColor(15);
-						GotoXY(130, 30); cout << "RESUME " << endl;
+						GotoXY(128, 30); cout << "RESUME " << endl;
 						TextColor(6);
-						GotoXY(130, 32); cout << "EXIT  " << endl;
+						GotoXY(128, 32); cout << "EXIT  " << endl;
+						TextColor(15);
 					}
 				}
 			}
 			else if (input == 27) // Hit ESC key
 			{
-
+				// Exit to main memu
 				system("pause");
 			}
 		}
