@@ -47,7 +47,11 @@ void Game::updateFrame()
 
 	}
 	if (player.levelUp()) 
+	{
+		levelUpAnimation();
+		InitDraw();
 		updateLevel();
+	}
 	addObstacle();
 	player.takeKBinput(*this);
 }
@@ -55,7 +59,11 @@ void Game::updateFrame()
 void Game::draw()
 {
 	GotoXY(122, 0);
-	cout << Time / 40;
+	cout << "Time: " << Time / 40;
+	GotoXY(122, 2);
+	cout << "Level: " << level;
+	GotoXY(122, 4);
+	cout << "Player: x: " << player.getXPos() << " y: " << player.getYPos();
 
 	player.draw();
 	for (int i = 0; i < obsList.size(); ++i)
@@ -95,6 +103,37 @@ void Game::InitDraw()
 		cout << char(223);
 	}
 }
+
+void Game::levelUpAnimation()
+{
+	for(int i = 0; i < 3; ++i)
+	{
+		clrscr();
+		GotoXY(15, 20 - 5);	TextColor(3*i + 1); cout << "$$\\       $$$$$$$$\\ $$\\    $$\\ $$$$$$$$\\ $$\\             $$\\   $$\\ $$$$$$$\\  ";
+		GotoXY(15, 21 - 5);	TextColor(3*i + 1); cout << "$$ |      $$  _____|$$ |   $$ |$$  _____|$$ |            $$ |  $$ |$$  __$$\\ ";
+		GotoXY(15, 22 - 5);	TextColor(3*i + 1); cout << "$$ |      $$ |      $$ |   $$ |$$ |      $$ |            $$ |  $$ |$$ |  $$ |";
+		GotoXY(15, 23 - 5);	TextColor(3*i + 1); cout << "$$ |      $$$$$\\    \\$$\\  $$  |$$$$$\\    $$ |            $$ |  $$ |$$$$$$$  |";
+		GotoXY(15, 24 - 5);	TextColor(3*i + 1); cout << "$$ |      $$  __|    \\$$\\$$  / $$  __|   $$ |            $$ |  $$ |$$  ____/ ";
+		GotoXY(15, 25 - 5);	TextColor(3*i + 1); cout << "$$ |      $$ |        \\$$$  /  $$ |      $$ |            $$ |  $$ |$$ |      ";
+		GotoXY(15, 26 - 5);	TextColor(3*i + 1); cout << "$$$$$$$$\\ $$$$$$$$\\    \\$  /   $$$$$$$$\\ $$$$$$$$\\       \\$$$$$$  |$$ |      ";
+		GotoXY(15, 27 - 5);	TextColor(3*i + 1); cout << "\\________|\\________|    \\_/    \\________|\\________|       \\______/ \\__|      ";
+		Sleep(700);
+		clrscr();
+		Sleep(400);
+	}
+
+	GotoXY(45,20);
+	char levelA[] = "CURRENT LEVEL: ";
+	for(int i = 0; i < strlen(levelA); i++)
+	{
+		cout << levelA[i];
+		Sleep(80);
+	}
+	cout << level + 1;
+	Sleep(1000);
+	clrscr();
+}
+
 
 int Game::getTime()
 {

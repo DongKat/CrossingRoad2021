@@ -130,7 +130,7 @@ public:
 	friend void Player::takeKBinput(Game game);
 	void loadGame(string name);
 	void saveGame(string name);
-
+	void levelUpAnimation();
 };
 
 #endif 
