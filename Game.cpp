@@ -206,6 +206,8 @@ void Game::addObstacle() {
 	// Lane 3, 4, 5 for Animals
 
 	int speed = 11 - level * 2;
+	if (speed <= 0)
+		speed = 1;
 	for (int j = 0; j < lane; j++)
 	{
 		Obstacles* obs = nullptr;
@@ -324,7 +326,10 @@ void Game::loadGame(string name)
 		throw runtime_error("Load Error");
 	}
 
-	int tmp_x, tmp_y, speed = 2;
+	int tmp_x, tmp_y;
+	int speed = 11 - level * 2;
+	if (speed <= 0)
+		speed = 1;
 	fread(&level, sizeof(int), 1, file);        // Read saved game level
 
 	fread(&player->xPos, sizeof(int), 1, file);			// Read player x position
