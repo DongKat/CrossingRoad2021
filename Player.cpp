@@ -42,7 +42,9 @@ void Player::draw()
 
 void Player::takeKBinput(Game game)
 {
-	if (game.Time >= 100) {
+	if (game.Time == 100)
+		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+	if (game.Time > 100) {
 		if (kbhit())
 		{
 			char input = getch();
@@ -81,7 +83,7 @@ void Player::takeKBinput(Game game)
 			{
 
 			}
-			else if ((input == 'T' || input == 'T')) // Hit Save game
+			else if ((input == 't' || input == 'T')) // Hit Save game
 			{
 
 			}
@@ -131,4 +133,8 @@ void Player::clearPlayer()
 bool Player::levelUp()
 {
 	return levelup;
+}
+
+void Player::resetLevelUp() {
+	levelup = false;
 }

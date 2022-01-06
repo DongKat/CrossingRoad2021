@@ -31,6 +31,7 @@ public:
 	int getWidth();
 	void clearPlayer();
 	bool levelUp();
+	void resetLevelUp();
 };
 
 class Obstacles
@@ -53,6 +54,7 @@ public:
 	int getSpeed();
 	int getLength();
 	int getWidth();
+	void clearObstacle();
 };
 
 class Dinausor : public Obstacles
@@ -122,7 +124,6 @@ public:
 	bool checkCollision();
 	void addObstacle();
 	friend void Player::takeKBinput(Game game);
-
 	void loadGame(string name);
 	void saveGame(string name);
 

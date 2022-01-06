@@ -54,6 +54,16 @@ int Obstacles::getWidth()
 	return width;
 }
 
+void Obstacles::clearObstacle()
+{
+	for (int i = 0; i < this->width; i++)
+	{
+		GotoXY(xPos - 1, 6 + lane * 6 - i);
+		for (int j = 0; j < this->length; j++)
+			cout << " ";
+	}
+}
+
 Dinausor::Dinausor(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed) {
 	shape.resize(5);
 	shape[0] = "    ____ ";
@@ -70,6 +80,7 @@ void Dinausor::popShape() {
 	for (int i = 0; i < 5; i++) {
 		shape[i].pop_back();
 	}
+	length--;
 }
 
 void Dinausor::draw()
@@ -95,6 +106,7 @@ void Car::popShape() {
 	for (int i = 0; i < 3; i++) {
 			shape[i].pop_back();
 	}
+	length--;
 }
 
 void Car::draw()
@@ -120,6 +132,7 @@ void Bike::popShape() {
 	for (int i = 0; i < 3; i++) {
 			shape[i].pop_back();
 	}
+	length--;
 }
 
 void Bike::draw()
@@ -146,6 +159,7 @@ void Truck::popShape() {
 	for (int i = 0; i < 5; i++) {
 			shape[i].pop_back();
 	}
+	length--;
 }
 
 void Truck::draw()

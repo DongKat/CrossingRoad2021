@@ -46,18 +46,15 @@ void Game::updateFrame()
 		}
 
 	}
-	/*if (player.levelUp()) {
-		GotoXY()
-		player.setPosition(60, 39);
+	if (player.levelUp()) 
 		updateLevel();
-	}*/
 	addObstacle();
 	player.takeKBinput(*this);
 }
 
 void Game::draw()
 {
-	GotoXY(101, 0);
+	GotoXY(122, 0);
 	cout << Time;
 
 	player.draw();
@@ -68,8 +65,6 @@ void Game::draw()
 
 void Game::InitDraw()
 {
-	GotoXY(95, 0);
-	cout << "Time: ";
 	for (int i = 0; i < lane - 1; i++) {
 		GotoXY(3, 7 + i * 6);
 		for (int i = 0; i < 8; i++)
@@ -108,6 +103,18 @@ int Game::getTime()
 
 void Game::updateLevel()
 {
+	player.clearPlayer();
+	player.setPosition(60, 39);
+	player.resetLevelUp();
+	for (int i = 0; i < lane; i++) {
+		for (int j = 0; j < obsList[i].size(); j++) {
+			obsList[i][j]->clearObstacle();
+		}
+		obsList[i].clear();
+	}
+	GotoXY(122, 0);
+	cout << "   ";
+	Time = 0;
 	level++;
 }
 
@@ -124,7 +131,7 @@ bool Game::checkCollision()
 	if (lane < 6) {
 		for (int i = 0; i < obsList[lane].size(); i++) {
 			for (int j = player.getXPos(); j < player.getXPos() + player.getLength(); j++) {
-				if (j >= obsList[lane][i]->getXPos() && j < obsList[lane][i]->getXPos() + obsList[lane][i]->getLength() - 2) {
+				if (j >= obsList[lane][i]->getXPos() && j < obsList[lane][i]->getXPos() + obsList[lane][i]->getLength() - 1) {
 					return true;
 				}
 			}
@@ -180,8 +187,10 @@ void Game::addObstacle() {
 			}
 			}
 			for (int k = 0; k < obsList[j].size(); k++)
-				if (obs->getSpeed() < obsList[j][k]->getSpeed() || obs->getLength() + 2 >= obsList[j][k]->getXPos())
+				if (obs->getSpeed() < obsList[j][k]->getSpeed() || obs->getLength() + 2 >= obsList[j][k]->getXPos()) {
+					delete obs;
 					return;
+				}
 			obsList[j].push_back(obs);
 		}
 	}
@@ -210,7 +219,7 @@ void Game::addObstacle() {
 void Game::saveGame(string name)
 {
 	// Get save file name
-	string name;                            // This way so I don't have to deal with char*
+	string name1;                            // This way so I don't have to deal with char*
 	getline(cin, name);
 	FILE* file = fopen(name.c_str(), "wb");	// Write file in binary mode
 	if (!file)
