@@ -55,7 +55,7 @@ void Game::updateFrame()
 void Game::draw()
 {
 	GotoXY(122, 0);
-	cout << Time;
+	cout << Time / 40;
 
 	player.draw();
 	for (int i = 0; i < obsList.size(); ++i)
@@ -197,7 +197,7 @@ void Game::addObstacle() {
 
 	/*for (int j = 0; j < lane; j++)
 	{
-		if (rand() % (300 / level) == 0)
+		if (rand() % (300 / level) == 0)5
 		{
 			Obstacles* obs = nullptr;
 			if (rand() % 4 == 0)
