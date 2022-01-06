@@ -10,7 +10,7 @@ Game::Game()
 	Time = 0;
 	frameTime = 1;
 	level = 1;
-	for (int i = 0; i < lane; i++)
+	for (int i = 0; i < 3; i++)
 		trafficLight[i] = true;    // DCat: True = Green, False = red
 	timeLight = 120;
 	obsList.resize(lane);
@@ -32,25 +32,26 @@ void Game::updateFrame()
 	Time += frameTime;
 	for (int i = 0; i < obsList.size(); i++)
 	{
-		if (trafficLight[i] == false) {
-			timeLight--;
-			TextColor(4);
-			GotoXY(1, 6 * i + 3);
-			cout << char(177) << char(177);
-			TextColor(7);
-			GotoXY(1, 6 * i + 4);
-			cout << "  ";
-			if (timeLight == 0) {
-				trafficLight[i] = true;
-				timeLight = 120;
+		if (i < 3) {
+			if (trafficLight[i] == false) {
+				timeLight--;
+				TextColor(4);
 				GotoXY(1, 6 * i + 3);
-				cout << "  ";
+				cout << char(177) << char(177);
 				TextColor(7);
+				GotoXY(1, 6 * i + 4);
+				cout << "  ";
+				if (timeLight == 0) {
+					trafficLight[i] = true;
+					timeLight = 120;
+					GotoXY(1, 6 * i + 3);
+					cout << "  ";
+					TextColor(7);
+				}
+				else
+					continue;
 			}
-			else
-				continue;
 		}
-
 		for (int j = 0; j < obsList[i].size(); j++)
 		{
 			if (Time % obsList[i][j]->getSpeed() == 0)
@@ -69,7 +70,7 @@ void Game::updateFrame()
 
 	}
 	if (Time % 200 == 0) {
-		for (int i = 0; i < lane; i++) {
+		for (int i = 0; i < 3; i++) {
 			if (rand() % 3 == 0)
 				trafficLight[i] = false;
 		}
@@ -83,6 +84,7 @@ void Game::updateFrame()
 		GotoXY(135, 14); cout << "    $$";
 		GotoXY(135, 15); cout << "    $$";
 		GotoXY(135, 16); cout << "    $$";
+		TextColor(7);
 	}
 	else if (Time == 80) {
 		TextColor(10);
@@ -93,6 +95,7 @@ void Game::updateFrame()
 		GotoXY(135, 14); cout << "  $$     ";
 		GotoXY(135, 15); cout << "$$       ";
 		GotoXY(135, 16); cout << "$$$$$$$$$";
+		TextColor(7);
 	}
 	else if (Time == 120) {
 		TextColor(10);
@@ -103,6 +106,7 @@ void Game::updateFrame()
 		GotoXY(135, 14); cout << "       $$";
 		GotoXY(135, 15); cout << "       $$";
 		GotoXY(135, 16); cout << "$$$$$$$$$";
+		TextColor(7);
 	}
 	else if (Time == 160) {
 		TextColor(10);
@@ -113,6 +117,7 @@ void Game::updateFrame()
 		GotoXY(135, 14); cout << "$$$$$$$$$";
 		GotoXY(135, 15); cout << "       $$";
 		GotoXY(135, 16); cout << "       $$";
+		TextColor(7);
 	}
 	else if (Time == 200) {
 		TextColor(10);
@@ -123,6 +128,7 @@ void Game::updateFrame()
 		GotoXY(135, 14); cout << "       $$";
 		GotoXY(135, 15); cout << "       $$";
 		GotoXY(135, 16); cout << " $$$$$$$$";
+		TextColor(7);
 	}
 	else if (Time == 240) {
 		TextColor(12);
@@ -133,9 +139,9 @@ void Game::updateFrame()
 		GotoXY(130, 14); cout << "$$    $$  $$    $$";
 		GotoXY(130, 15); cout << "$$    $$  $$    $$";
 		GotoXY(130, 16); cout << " $$$$$$    $$$$$$ ";
+		TextColor(7);
 	}
 	else if (Time == 280) {
-		TextColor(7);
 		GotoXY(130, 10); cout << "                  ";
 		GotoXY(130, 11); cout << "                  ";
 		GotoXY(130, 12); cout << "                  ";
@@ -168,7 +174,7 @@ void Game::draw()
 		for (int j = 0; j < obsList[i].size(); j++)
 			obsList[i][j]->draw();
 
-	for (int i = 0; i < lane; i++) {
+	for (int i = 0; i < 3; i++) {
 		if (trafficLight[i] == true) {
 			TextColor(2);
 			GotoXY(1, 6 * i + 4);
@@ -186,7 +192,7 @@ void Game::draw()
 void Game::InitDraw()
 {
 	TextColor(2);
-	for (int i = 0; i < lane; i++) {
+	for (int i = 0; i < 3; i++) {
 		GotoXY(1, 6 * i + 4);
 		cout << char(177) << char(177);
 	}
@@ -329,7 +335,7 @@ void Game::addObstacle() {
 	for (int j = 0; j < lane; j++)
 	{
 		Obstacles* obs = nullptr;
-		if (rand() % (300 / level) == 0 && trafficLight[j] == true)
+		if ((rand() % (300 / level) == 0) && ((trafficLight[j] == true && j < 3) || j >= 3))
 		{
 			switch (j) {
 			case 0:

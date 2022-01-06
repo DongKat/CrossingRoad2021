@@ -63,7 +63,7 @@ void Obstacles::clearObstacle()
 }
 
 Dinausor::Dinausor(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed) {
-	shape.resize(5);
+	shape.resize(5);	
 	shape[0] = "    ____ ";
 	shape[1] = "   | o__|";
 	shape[2] = " \\_/  |__";
