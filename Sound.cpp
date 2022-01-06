@@ -19,7 +19,7 @@ void SoundGame::play(string path)
 void SoundGame::stop(string path)
 {
 	string dir = "close " + path;
-	PlaySound(NULL, NULL, NULL;
+	PlaySound(NULL, NULL, NULL);
 }
 
 //void SoundGame::pause(string path)
