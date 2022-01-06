@@ -10,9 +10,9 @@ Obstacles::Obstacles(int xPos, int lane, int length, int width, int speed)
 }
 
 void Obstacles::updatePosition()
-{	
+{
 	/*if (lane % 2 == 0)*/
-		xPos += 1;
+	xPos += 1;
 	/*else
 		xPos -= 1;*/
 }
@@ -98,7 +98,7 @@ Car::Car(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos,
 
 void Car::popShape() {
 	for (int i = 0; i < 3; i++) {
-			shape[i].pop_back();
+		shape[i].pop_back();
 	}
 	length--;
 }
@@ -123,7 +123,7 @@ Bike::Bike(int xPos, int lane, int length, int width, int speed) : Obstacles(xPo
 
 void Bike::popShape() {
 	for (int i = 0; i < 3; i++) {
-			shape[i].pop_back();
+		shape[i].pop_back();
 	}
 	length--;
 }
@@ -149,7 +149,7 @@ Truck::Truck(int xPos, int lane, int length, int width, int speed) : Obstacles(x
 
 void Truck::popShape() {
 	for (int i = 0; i < 5; i++) {
-			shape[i].pop_back();
+		shape[i].pop_back();
 	}
 	length--;
 }
@@ -161,5 +161,57 @@ void Truck::draw()
 		GotoXY(getXPos() - 1, getLane() * 6 + i + 2);
 		cout << shape[i];
 	}
+}
+
+Kuma::Kuma(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed)
+{
+	shape.resize(4);
+	shape[0] = "    /|/|";
+	shape[1] = "  /00  |";
+	shape[2] = " |/^^\\ |";
+	shape[3] = "  \\m_m_|";
+}
+void Kuma::popShape()
+{
+	for (int i = 0; i < 4; i++) {
+		shape[i].pop_back();
+	}
+	length--;
+}
+void Kuma::draw()
+{
+	// # RGB Bear (Totoro)
+	TextColor(rand() % 15);
+	for (int i = 0; i < 4; i++) {
+		GotoXY(getXPos()-1, getLane() * 6 + i + 3);
+		cout << shape[i];
+	}
+	TextColor(15);
+}
+Bird::Bird(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed)
+{
+	shape.resize(5);
+	shape[0] = "⣿⣿⡇⠀⠀⢸⣿⢰⣿⡆⠀⣾⣿⡆⠀⣾⣷ ⣿⣿⡇⠀⠀⣿⣿⡇";
+	shape[1] = "⣿⣿⡇⠀⠀⢸⣿⠘⣿⣿⣤⣿⣿⣿⣤⣿⡇⢻⣿⡇⠀⠀⣿⣿⡇⠀";
+	shape[2] = "⣿⣿⡇⠀⠀⢸⡿⠀⢹⣿⣿⣿⣿⣿⣿⣿⠁⢸⣿⣇⠀⢀⣿⣿⠇⠀";
+	shape[3] = "⠙⢿⣷⣶⣶⡿⠁⠀⠈⣿⣿⠟⠀⣿⣿⠇⠀⠈⠻⣿⣶⣾⡿⠋⠀⠀";
+}
+void Bird::popShape()
+{
+	for (int i = 0; i < 4; i++) {
+		shape[i].pop_back();
+	}
+	length--;
+}
+void Bird::draw()
+{
+	// # RGB Bear (Totoro)
+	srand(time(NULL));
+	TextColor(rand() % 15);
+	for (int i = 0; i < 5; i++) {
+		GotoXY(getXPos() - 1, getLane() * 6 + i + 2);
+		cout << shape[i];
+	}
+}
 	TextColor(7);
 }	  

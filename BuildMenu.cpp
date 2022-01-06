@@ -7,7 +7,6 @@ Menu::Menu(Sound* s)
 void Menu::drawMenu()
 {
 	clrscr();
-	ShowConsoleCursor(1);
 	drawTitle();
 	drawBoard(10, 12, 90, 30);
 	drawBoard(25, 12, 90, 30);
@@ -92,8 +91,8 @@ int Menu::updateChoice()
 			{
 				return 1;
 			}
-			if (i == 5) return 5; 
-			break; 
+			if (i == 5) return 5;
+			break;
 		}
 		default: break;
 		}
@@ -105,7 +104,11 @@ string Menu::LoadGame()
 	string temp;
 	GotoXY(27, 16); cout << "                                                   ";
 	GotoXY(27, 16);	cout << "Enter your save file name:";
+	GotoXY(27, 18); cout << "                                                   ";
+	ShowConsoleCursor(true);
 	GotoXY(27, 18); getline(cin, temp);
+	ShowConsoleCursor(false);
+
 	return temp;
 }
 

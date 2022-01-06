@@ -34,6 +34,7 @@ public:
 	void clearPlayer();
 	bool levelUp();
 	void drawDead();
+	void drawBoom();
 	friend class Game;
 	void resetLevelUp();
 };
@@ -97,6 +98,14 @@ public:
 	void draw();
 };
 
+class Kuma : public Obstacles
+{
+public:
+	Kuma(int xPos, int lane, int length, int width, int speed);
+	void popShape();
+	void draw();
+};
+
 class Bird : public Obstacles
 {
 public:
@@ -120,6 +129,7 @@ private:
 public:
 	Game();
 	Game(int xMap, int lane); // Probably never use lol - DCat -
+	void resetGame();
 	void updateLevel();
 	void updateFrame();
 	void InitDraw();
@@ -134,6 +144,7 @@ public:
 	void levelUpAnimation();
 	void gameOverAnimation();
 	void resetTrafficLight();
+	~Game();
 };
 
 #endif 

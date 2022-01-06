@@ -26,6 +26,23 @@ Game::Game(int xMap, int lane)
 	Time = 0;
 	level = 1;
 }
+void Game::resetGame()
+{
+	xMap = 120;
+	lane = 6;
+	yMap = 6 * (lane + 1);
+	Time = 0;
+	frameTime = 1;
+	level = 1;
+	for (int i = 0; i < lane; i++)
+	{
+		trafficLight[i] = true;    // DCat: True = Green, False = red
+		obsList[i].clear();
+	}
+	timeLight = 120;
+	obsList.resize(lane);
+	player->setPosition(60, 39);
+}
 
 void Game::updateFrame()
 {
@@ -268,8 +285,9 @@ void Game::levelUpAnimation()
 void Game::gameOverAnimation()
 {
 	player->drawDead();
-	Sleep(1500);
-
+	Sleep(800);
+	player->drawBoom();
+	Sleep(800);
 	for (int i = 0; i < 3; ++i)
 	{
 		clrscr();
@@ -526,4 +544,12 @@ void Game::loadGame(string name)
 void Game::resetTrafficLight() {
 	for (int i = 0; i < lane; i++)
 		trafficLight[i] = true;
+}
+
+Game::~Game()
+{
+	delete player;
+	for (int i = 0; i < lane; i++)
+		for (int j = 0; j < obsList[i].size(); j++)
+			delete obsList[i][j];
 }

@@ -47,6 +47,24 @@ void Player::drawDead()
 	GotoXY(xPos, yPos + 2); cout << " |___| ";
 	GotoXY(xPos, yPos + 3); cout << " |_  |_";
 }
+void Player::drawBoom()
+{
+	GotoXY(xPos, yPos + 4);		cout << "  ____.,/       \~,._____";
+	Sleep(100);
+	GotoXY(xPos, yPos + 3);		cout << "      `--_--_--_--'   ";
+	Sleep(100);
+	GotoXY(xPos, yPos + 2);		cout << "      .-=||  | |=-.   ";
+	GotoXY(xPos, yPos + 1);		cout << "   ```--. . , ; .--'''       ";
+	Sleep(100);
+	GotoXY(xPos, yPos + 0);		cout << " \\._               _./  ";
+	Sleep(100);
+	GotoXY(xPos, yPos - 1);		cout << " (                    >)";
+	Sleep(100);
+	GotoXY(xPos, yPos - 2);		cout << "  _--                -_";
+	Sleep(100);
+	GotoXY(xPos, yPos - 3);		cout << "    _.-^^---....,,--_ ";
+	
+}
 
 void Player::takeKBinput(Game* game)
 {
@@ -95,7 +113,9 @@ void Player::takeKBinput(Game* game)
 					TextColor(12);		GotoXY(128, 27); cout << "LOAD GAME ";
 					TextColor(6);		GotoXY(128, 30); cout << "Enter save file name: " << endl;
 					cin.clear();
+					ShowConsoleCursor(true);
 					GotoXY(128, 32);	getline(cin, temp);
+					ShowConsoleCursor(false);
 					TextColor(15);
 					game->loadGame(temp);
 					clrscr();
@@ -114,7 +134,9 @@ void Player::takeKBinput(Game* game)
 					TextColor(12); GotoXY(128, 27); cout << "SAVE GAME ";
 					TextColor(6); GotoXY(128, 30); cout << "Enter save file name: " << endl;
 					cin.clear();
+					ShowConsoleCursor(true);
 					GotoXY(128, 32);	getline(cin, temp);
+					ShowConsoleCursor(false);
 					TextColor(15);
 					game->saveGame(temp);
 				}
@@ -122,6 +144,10 @@ void Player::takeKBinput(Game* game)
 				{
 					GotoXY(128, 34); cout << e.what();
 				}
+				GotoXY(128, 27); cout << "                                  ";
+				GotoXY(128, 30); cout << "                                  ";
+				GotoXY(128, 32); cout << "                                  ";
+
 			}
 			else if ((input == 'p' || input == 'P'))
 			{
@@ -145,9 +171,12 @@ void Player::takeKBinput(Game* game)
 					}
 					if (i == 0)
 					{
-						if (input == 43)
+						if (input == 13)
 						{
-							// Resume game
+							// Resume 
+							GotoXY(128, 27); cout << "          ";
+							GotoXY(128, 30); cout << "          ";
+							GotoXY(128, 32); cout << "          ";
 							break;
 						}
 						TextColor(6);
@@ -157,9 +186,10 @@ void Player::takeKBinput(Game* game)
 					}
 					if (i == 1)
 					{
-						if (input == 43)
+						if (input == 13)
 						{
 							// Exit to main memu
+							throw "lala";
 							break;
 						}
 						TextColor(15);

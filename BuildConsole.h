@@ -8,7 +8,7 @@ using namespace std;
 #define CONSOLE_WIDTH 200
 #define	CONSOLE_HEIGHT 30
 
-void ShowConsoleCursor(bool showFlag);
+void ShowConsoleCursor(bool);
 void Resize(int, int);
 void FixConsoleWindow();
 void TextColor(int x);

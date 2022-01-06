@@ -10,40 +10,63 @@ int main()
 	Menu memu(&music);
 	Resize(1280, 760);
 	FixConsoleWindow();
-	memu.drawTitle();
-	memu.drawMenu();
-	memu.drawChoice();
-	int tmp = memu.updateChoice();
-	if (tmp == 0)
-	{
-		//new game
-
-	}
-	else if (tmp == 1)
-	{
-		//load game
-		string temp;
-		temp = memu.LoadGame();
-		game.loadGame(temp);
-	}
-	clrscr();
-	game.InitDraw();
+	ShowConsoleCursor(false);
 	while (true)
 	{
-		game.draw();
-		game.updateFrame();
-
-		if (game.checkCollision())
+		memu.drawTitle();
+		memu.drawMenu();
+		memu.drawChoice();
+		int tmp = memu.updateChoice();
+		if (tmp == 0)
 		{
-			// display Game over screen
-			game.gameOverAnimation();
-			break;
-		}
+			//new game
 
-		Sleep(10);
+		}
+		else if (tmp == 1)
+		{
+			//load game
+			while (true)
+			{
+				try
+				{
+					string temp;
+					temp = memu.LoadGame();
+					game.loadGame(temp);
+				}
+				catch (runtime_error e)
+				{
+					GotoXY(27, 18); cout << "Can't load save file. Please enter again";
+					GotoXY(27, 18); cout << "                                                    ";
+					continue;
+				}
+				break;
+			}
+		}
+		else
+			break;
+		clrscr();
+		game.InitDraw();
+		try
+		{
+			while (true)
+			{
+				game.draw();
+				game.updateFrame();
+				if (game.checkCollision())
+				{
+					// display Game over screen
+					game.gameOverAnimation();
+					break;
+				}
+
+				Sleep(10);
+			}
+		}
+		catch (const char* e)
+		{
+		}
+		game.resetGame();
 	}
 
-
-	system("pause");
 	return 0;
 }
