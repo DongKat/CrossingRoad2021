@@ -75,6 +75,7 @@ void Game::updateFrame()
 		}
 	}
 	if (Time == 40) {
+		TextColor(10);
 		GotoXY(135, 10); cout << "    $$";
 		GotoXY(135, 11); cout << "  $$$$";
 		GotoXY(135, 12); cout << "$$  $$";
@@ -84,6 +85,7 @@ void Game::updateFrame()
 		GotoXY(135, 16); cout << "    $$";
 	}
 	else if (Time == 80) {
+		TextColor(10);
 		GotoXY(135, 10); cout << "$$$$$$$$$";
 		GotoXY(135, 11); cout << "       $$";
 		GotoXY(135, 12); cout << "      $$ ";
@@ -93,6 +95,7 @@ void Game::updateFrame()
 		GotoXY(135, 16); cout << "$$$$$$$$$";
 	}
 	else if (Time == 120) {
+		TextColor(10);
 		GotoXY(135, 10); cout << "$$$$$$$$$";
 		GotoXY(135, 11); cout << "       $$";
 		GotoXY(135, 12); cout << "       $$";
@@ -102,6 +105,7 @@ void Game::updateFrame()
 		GotoXY(135, 16); cout << "$$$$$$$$$";
 	}
 	else if (Time == 160) {
+		TextColor(10);
 		GotoXY(135, 10); cout << "       $$";
 		GotoXY(135, 11); cout << "     $$  ";
 		GotoXY(135, 12); cout << "    $$   ";
@@ -111,6 +115,7 @@ void Game::updateFrame()
 		GotoXY(135, 16); cout << "       $$";
 	}
 	else if (Time == 200) {
+		TextColor(10);
 		GotoXY(135, 10); cout << " $$$$$$$$";
 		GotoXY(135, 11); cout << " $$      ";
 		GotoXY(135, 12); cout << " $$      ";
@@ -120,6 +125,7 @@ void Game::updateFrame()
 		GotoXY(135, 16); cout << " $$$$$$$$";
 	}
 	else if (Time == 240) {
+		TextColor(12);
 		GotoXY(130, 10); cout << " $$$$$$    $$$$$$ ";
 		GotoXY(130, 11); cout << "$$    $$  $$    $$";
 		GotoXY(130, 12); cout << "$$        $$    $$";
@@ -129,6 +135,7 @@ void Game::updateFrame()
 		GotoXY(130, 16); cout << " $$$$$$    $$$$$$ ";
 	}
 	else if (Time == 280) {
+		TextColor(7);
 		GotoXY(130, 10); cout << "                  ";
 		GotoXY(130, 11); cout << "                  ";
 		GotoXY(130, 12); cout << "                  ";
