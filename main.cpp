@@ -21,6 +21,7 @@ int main()
 
 		if (game.checkCollision())
 		{
+			game.gameOverAnimation();
 			// display Game over screen
 			break;
 		}
@@ -28,7 +29,7 @@ int main()
 		Sleep(10);
 	}
 
-	game.gameOverAnimation();
+	
 	system("pause");
 	return 0;
 }

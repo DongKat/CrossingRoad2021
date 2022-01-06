@@ -40,6 +40,14 @@ void Player::draw()
 	GotoXY(xPos, yPos + 3); cout << " |_  |_";
 }
 
+void Player::drawDead()
+{
+	GotoXY(xPos, yPos);     cout << " (x_x) ";
+	GotoXY(xPos, yPos + 1); cout << "/|   |\\";
+	GotoXY(xPos, yPos + 2); cout << " |___| ";
+	GotoXY(xPos, yPos + 3); cout << " |_  |_";
+}
+
 void Player::takeKBinput(Game game)
 {
 	if (game.Time == 100)

@@ -136,6 +136,9 @@ void Game::levelUpAnimation()
 
 void Game::gameOverAnimation()
 {
+	player.drawDead();
+	Sleep(1500);
+
 	for(int i = 0; i < 3; ++i)
 	{
 		clrscr();
@@ -147,7 +150,7 @@ void Game::gameOverAnimation()
 		GotoXY(15, 25 - 5);	TextColor(3*i + 1); cout << "$$ |  $$ |$$ |  $$ |$$ |\\$  /$$ |$$ |            $$ |  $$ |  \\$$$  /  $$ |      $$ |  $$ |";
 		GotoXY(15, 26 - 5);	TextColor(3*i + 1); cout << "\\$$$$$$  |$$ |  $$ |$$ | \\_/ $$ |$$$$$$$$\\        $$$$$$  |   \\$  /   $$$$$$$$\\ $$ |  $$ |";
 		GotoXY(15, 27 - 5);	TextColor(3*i + 1); cout << " \\______/ \\__|  \\__|\\__|     \\__|\\________|       \\______/     \\_/    \\________|\\__|  \\__|";
-		Sleep(700);
+		Sleep(1200);
 		clrscr();
 		Sleep(400);
 	}
