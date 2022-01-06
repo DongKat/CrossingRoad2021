@@ -56,19 +56,19 @@ void Player::takeKBinput(Game* game)
 		if (kbhit())
 		{
 			char input = getch();
-			if ((input == 'a' || input == 'A') && xPos > 0)
+			if ((input == 'a' || input == 'A') && xPos > 5)
 			{
 				clearPlayer();
 				GotoXY(xPos, yPos);
 				cout << " ";
-				xPos -= 3;
+				xPos -= 7;
 			}
-			else if ((input == 'd' || input == 'D') && xPos < game->xMap - this->length - 2)
+			else if ((input == 'd' || input == 'D') && xPos < game->xMap - this->length - 5)
 			{
 				clearPlayer();
 				GotoXY(xPos, yPos);
 				cout << " ";
-				xPos += 3;
+				xPos += 7;
 			}
 			else if (input == 'w' || input == 'W') {
 				if (yPos > 3) {

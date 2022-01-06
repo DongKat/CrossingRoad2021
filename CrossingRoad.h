@@ -113,7 +113,8 @@ private:
 	int Time;
 	int frameTime;
 	int level;
-	bool trafficLight;
+	bool trafficLight[6];
+	int timeLight;
 	Player* player;
 	vector<vector<Obstacles*>> obsList;
 public:

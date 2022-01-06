@@ -10,13 +10,15 @@ Game::Game()
 	Time = 0;
 	frameTime = 1;
 	level = 1;
-	trafficLight = true;    // DCat: True = Green, False = red
+	for (int i = 0; i < lane; i++)
+		trafficLight[i] = true;    // DCat: True = Green, False = red
+	timeLight = 120;
 	obsList.resize(lane);
 	player = new Player;
 	player->setPosition(60, 39);
 }
 
-Game::Game(int xMap, int lane) 
+Game::Game(int xMap, int lane)
 {
 	this->xMap = xMap;
 	this->lane = lane;
@@ -30,6 +32,25 @@ void Game::updateFrame()
 	Time += frameTime;
 	for (int i = 0; i < obsList.size(); i++)
 	{
+		if (trafficLight[i] == false) {
+			timeLight--;
+			TextColor(4);
+			GotoXY(1, 6 * i + 3);
+			cout << char(177) << char(177);
+			TextColor(7);
+			GotoXY(1, 6 * i + 4);
+			cout << "  ";
+			if (timeLight == 0) {
+				trafficLight[i] = true;
+				timeLight = 120;
+				GotoXY(1, 6 * i + 3);
+				cout << "  ";
+				TextColor(7);
+			}
+			else
+				continue;
+		}
+		
 		for (int j = 0; j < obsList[i].size(); j++)
 		{
 			if (Time % obsList[i][j]->getSpeed() == 0)
@@ -47,7 +68,13 @@ void Game::updateFrame()
 		}
 
 	}
-	if (player->levelUp()) 
+	if (Time % 200 == 0) {
+		for (int i = 0; i < lane; i++) {
+			if (rand() % 3 == 0)
+				trafficLight[i] = false;
+		}
+	}
+	if (player->levelUp())
 	{
 		levelUpAnimation();
 		InitDraw();
@@ -70,10 +97,30 @@ void Game::draw()
 	for (int i = 0; i < lane; i++)
 		for (int j = 0; j < obsList[i].size(); j++)
 			obsList[i][j]->draw();
+	
+	for (int i = 0; i < lane; i++) {
+		if (trafficLight[i] == true) {
+			TextColor(2);
+			GotoXY(1, 6 * i + 4);
+			cout << char(177) << char(177);
+		}
+		else {
+			TextColor(4);
+			GotoXY(1, 6 * i + 3);
+			cout << char(177) << char(177);
+		}
+	}
+	TextColor(7);
 }
 
 void Game::InitDraw()
 {
+	TextColor(2);
+	for (int i = 0; i < lane; i++) {
+		GotoXY(1, 6 * i + 4);
+		cout << char(177) << char(177);
+	}
+	TextColor(7);
 	for (int i = 0; i < lane - 1; i++) {
 		GotoXY(3, 7 + i * 6);
 		for (int i = 0; i < 8; i++)
@@ -107,25 +154,25 @@ void Game::InitDraw()
 
 void Game::levelUpAnimation()
 {
-	for(int i = 0; i < 3; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		clrscr();
-		GotoXY(15, 20 - 5);	TextColor(3*i + 1); cout << "$$\\       $$$$$$$$\\ $$\\    $$\\ $$$$$$$$\\ $$\\             $$\\   $$\\ $$$$$$$\\  ";
-		GotoXY(15, 21 - 5);	TextColor(3*i + 1); cout << "$$ |      $$  _____|$$ |   $$ |$$  _____|$$ |            $$ |  $$ |$$  __$$\\ ";
-		GotoXY(15, 22 - 5);	TextColor(3*i + 1); cout << "$$ |      $$ |      $$ |   $$ |$$ |      $$ |            $$ |  $$ |$$ |  $$ |";
-		GotoXY(15, 23 - 5);	TextColor(3*i + 1); cout << "$$ |      $$$$$\\    \\$$\\  $$  |$$$$$\\    $$ |            $$ |  $$ |$$$$$$$  |";
-		GotoXY(15, 24 - 5);	TextColor(3*i + 1); cout << "$$ |      $$  __|    \\$$\\$$  / $$  __|   $$ |            $$ |  $$ |$$  ____/ ";
-		GotoXY(15, 25 - 5);	TextColor(3*i + 1); cout << "$$ |      $$ |        \\$$$  /  $$ |      $$ |            $$ |  $$ |$$ |      ";
-		GotoXY(15, 26 - 5);	TextColor(3*i + 1); cout << "$$$$$$$$\\ $$$$$$$$\\    \\$  /   $$$$$$$$\\ $$$$$$$$\\       \\$$$$$$  |$$ |      ";
-		GotoXY(15, 27 - 5);	TextColor(3*i + 1); cout << "\\________|\\________|    \\_/    \\________|\\________|       \\______/ \\__|      ";
+		GotoXY(15, 20 - 5);	TextColor(3 * i + 1); cout << "$$\\       $$$$$$$$\\ $$\\    $$\\ $$$$$$$$\\ $$\\             $$\\   $$\\ $$$$$$$\\  ";
+		GotoXY(15, 21 - 5);	TextColor(3 * i + 1); cout << "$$ |      $$  _____|$$ |   $$ |$$  _____|$$ |            $$ |  $$ |$$  __$$\\ ";
+		GotoXY(15, 22 - 5);	TextColor(3 * i + 1); cout << "$$ |      $$ |      $$ |   $$ |$$ |      $$ |            $$ |  $$ |$$ |  $$ |";
+		GotoXY(15, 23 - 5);	TextColor(3 * i + 1); cout << "$$ |      $$$$$\\    \\$$\\  $$  |$$$$$\\    $$ |            $$ |  $$ |$$$$$$$  |";
+		GotoXY(15, 24 - 5);	TextColor(3 * i + 1); cout << "$$ |      $$  __|    \\$$\\$$  / $$  __|   $$ |            $$ |  $$ |$$  ____/ ";
+		GotoXY(15, 25 - 5);	TextColor(3 * i + 1); cout << "$$ |      $$ |        \\$$$  /  $$ |      $$ |            $$ |  $$ |$$ |      ";
+		GotoXY(15, 26 - 5);	TextColor(3 * i + 1); cout << "$$$$$$$$\\ $$$$$$$$\\    \\$  /   $$$$$$$$\\ $$$$$$$$\\       \\$$$$$$  |$$ |      ";
+		GotoXY(15, 27 - 5);	TextColor(3 * i + 1); cout << "\\________|\\________|    \\_/    \\________|\\________|       \\______/ \\__|      ";
 		Sleep(700);
 		clrscr();
 		Sleep(400);
 	}
 
-	GotoXY(45,20);
+	GotoXY(45, 20);
 	char levelA[] = "CURRENT LEVEL: ";
-	for(int i = 0; i < strlen(levelA); i++)
+	for (int i = 0; i < strlen(levelA); i++)
 	{
 		cout << levelA[i];
 		Sleep(20);
@@ -140,17 +187,17 @@ void Game::gameOverAnimation()
 	player->drawDead();
 	Sleep(1500);
 
-	for(int i = 0; i < 3; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		clrscr();
-		GotoXY(15, 20 - 5);	TextColor(3*i + 1); cout << " $$$$$$\\   $$$$$$\\  $$\\      $$\\ $$$$$$$$\\        $$$$$$\\  $$\\    $$\\ $$$$$$$$\\ $$$$$$$\\  ";
-		GotoXY(15, 21 - 5);	TextColor(3*i + 1); cout << "$$  __$$\\ $$  __$$\\ $$$\\    $$$ |$$  _____|      $$  __$$\\ $$ |   $$ |$$  _____|$$  __$$\\ ";
-		GotoXY(15, 22 - 5);	TextColor(3*i + 1); cout << "$$ /  \\__|$$ /  $$ |$$$$\\  $$$$ |$$ |            $$ /  $$ |$$ |   $$ |$$ |      $$ |  $$ |";
-		GotoXY(15, 23 - 5);	TextColor(3*i + 1); cout << "$$ |$$$$\\ $$$$$$$$ |$$\\$$\\$$ $$ |$$$$$\\          $$ |  $$ |\\$$\\  $$  |$$$$$\\    $$$$$$$  |";
-		GotoXY(15, 24 - 5);	TextColor(3*i + 1); cout << "$$ |\\_$$ |$$  __$$ |$$ \\$$$  $$ |$$  __|         $$ |  $$ | \\$$\\$$  / $$  __|   $$  __$$< ";
-		GotoXY(15, 25 - 5);	TextColor(3*i + 1); cout << "$$ |  $$ |$$ |  $$ |$$ |\\$  /$$ |$$ |            $$ |  $$ |  \\$$$  /  $$ |      $$ |  $$ |";
-		GotoXY(15, 26 - 5);	TextColor(3*i + 1); cout << "\\$$$$$$  |$$ |  $$ |$$ | \\_/ $$ |$$$$$$$$\\        $$$$$$  |   \\$  /   $$$$$$$$\\ $$ |  $$ |";
-		GotoXY(15, 27 - 5);	TextColor(3*i + 1); cout << " \\______/ \\__|  \\__|\\__|     \\__|\\________|       \\______/     \\_/    \\________|\\__|  \\__|";
+		GotoXY(15, 20 - 5);	TextColor(3 * i + 1); cout << " $$$$$$\\   $$$$$$\\  $$\\      $$\\ $$$$$$$$\\        $$$$$$\\  $$\\    $$\\ $$$$$$$$\\ $$$$$$$\\  ";
+		GotoXY(15, 21 - 5);	TextColor(3 * i + 1); cout << "$$  __$$\\ $$  __$$\\ $$$\\    $$$ |$$  _____|      $$  __$$\\ $$ |   $$ |$$  _____|$$  __$$\\ ";
+		GotoXY(15, 22 - 5);	TextColor(3 * i + 1); cout << "$$ /  \\__|$$ /  $$ |$$$$\\  $$$$ |$$ |            $$ /  $$ |$$ |   $$ |$$ |      $$ |  $$ |";
+		GotoXY(15, 23 - 5);	TextColor(3 * i + 1); cout << "$$ |$$$$\\ $$$$$$$$ |$$\\$$\\$$ $$ |$$$$$\\          $$ |  $$ |\\$$\\  $$  |$$$$$\\    $$$$$$$  |";
+		GotoXY(15, 24 - 5);	TextColor(3 * i + 1); cout << "$$ |\\_$$ |$$  __$$ |$$ \\$$$  $$ |$$  __|         $$ |  $$ | \\$$\\$$  / $$  __|   $$  __$$< ";
+		GotoXY(15, 25 - 5);	TextColor(3 * i + 1); cout << "$$ |  $$ |$$ |  $$ |$$ |\\$  /$$ |$$ |            $$ |  $$ |  \\$$$  /  $$ |      $$ |  $$ |";
+		GotoXY(15, 26 - 5);	TextColor(3 * i + 1); cout << "\\$$$$$$  |$$ |  $$ |$$ | \\_/ $$ |$$$$$$$$\\        $$$$$$  |   \\$  /   $$$$$$$$\\ $$ |  $$ |";
+		GotoXY(15, 27 - 5);	TextColor(3 * i + 1); cout << " \\______/ \\__|  \\__|\\__|     \\__|\\________|       \\______/     \\_/    \\________|\\__|  \\__|";
 		Sleep(1200);
 		clrscr();
 		Sleep(400);
@@ -292,7 +339,7 @@ void Game::saveGame(string name)
 	fwrite(PROOF, sizeof(char), strlen(PROOF), file);   // Write certificate
 	fwrite(&level, sizeof(int), 1, file);               // Write level
 
-	
+
 	fwrite(&player->xPos, sizeof(int), 1, file);			// Write player position
 	fwrite(&player->yPos, sizeof(int), 1, file);			// Write player position
 	fwrite(&lane, sizeof(int), 1, file);			// Write number of lanes, which always is 6 tho
@@ -337,7 +384,7 @@ void Game::loadGame(string name)
 	fread(&lane, sizeof(int), 1, file);				// Read number of lane, tho it's default 6
 
 	// Clear screen
-	
+
 
 	obsList.resize(lane);
 	Obstacles* obs = nullptr;
