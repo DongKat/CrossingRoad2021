@@ -31,6 +31,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BuildMenu.cpp">
+    <ClCompile Include="DrawMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sound.cpp">
@@ -53,6 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="opening.mp3">
+    <ClInclude Include="Sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="sound.mp3">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>

@@ -87,8 +87,55 @@ void Player::takeKBinput(Game game)
 			{
 
 			}
+			else if ((input == 'p' || input == 'P'))
+			{
+				int i = 0;
+				TextColor(12); GotoXY(130, 27); cout << "PAUSE ";
+				TextColor(6); GotoXY(130, 30); cout << "RESUME " << endl;
+				TextColor(15); GotoXY(130, 32); cout << "EXIT  " << endl;
+
+				while (true)
+				{
+					input = getch();
+					if (input == 'w' || input == 'W')
+					{
+						if (i < 1) i++;
+						else i = 0;
+					}
+					if (input == 's' || input == 'S')
+					{
+						if (i > 0) i--;
+						else i = 1;
+					}
+					if (i == 0)
+					{
+						if (input == 43)
+						{
+							// Resume game
+							break;
+						}
+						TextColor(6);
+						GotoXY(130, 30); cout << "RESUME " << endl;
+						TextColor(15);
+						GotoXY(130, 32); cout << "EXIT  " << endl;
+					}
+					if (i == 1)
+					{
+						if (input == 43)
+						{
+							// Exit to main menu
+							break;
+						}
+						TextColor(15);
+						GotoXY(130, 30); cout << "RESUME " << endl;
+						TextColor(6);
+						GotoXY(130, 32); cout << "EXIT  " << endl;
+					}
+				}
+			}
 			else if (input == 27) // Hit ESC key
 			{
+
 				system("pause");
 			}
 		}

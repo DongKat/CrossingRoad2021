@@ -8,6 +8,5 @@ void Sound::play(string path)
 
 void Sound::stop(string path)
 {
-	string dir = "close " + path;
 	PlaySound(NULL, NULL, NULL);
 }

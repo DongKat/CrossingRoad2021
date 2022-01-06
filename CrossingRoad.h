@@ -8,6 +8,7 @@
 #include <string>
 #include <conio.h>
 #include "BuildConsole.h"
+#include "Sound.h"
 
 using namespace std;
 
