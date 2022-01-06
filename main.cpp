@@ -46,6 +46,7 @@ int main()
 			break;
 		clrscr();
 		game.InitDraw();
+		srand(time(NULL));
 		try
 		{
 			while (true)

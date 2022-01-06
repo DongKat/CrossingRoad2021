@@ -92,80 +92,83 @@ void Game::updateFrame()
 				trafficLight[i] = false;
 		}
 	}
-	if (Time == 40) {
-		TextColor(10);
-		GotoXY(135, 10); cout << "    $$";
-		GotoXY(135, 11); cout << "  $$$$";
-		GotoXY(135, 12); cout << "$$  $$";
-		GotoXY(135, 13); cout << "    $$";
-		GotoXY(135, 14); cout << "    $$";
-		GotoXY(135, 15); cout << "    $$";
-		GotoXY(135, 16); cout << "    $$";
-		TextColor(7);
-	}
-	else if (Time == 80) {
-		TextColor(10);
-		GotoXY(135, 10); cout << "$$$$$$$$$";
-		GotoXY(135, 11); cout << "       $$";
-		GotoXY(135, 12); cout << "      $$ ";
-		GotoXY(135, 13); cout << "    $$   ";
-		GotoXY(135, 14); cout << "  $$     ";
-		GotoXY(135, 15); cout << "$$       ";
-		GotoXY(135, 16); cout << "$$$$$$$$$";
-		TextColor(7);
-	}
-	else if (Time == 120) {
-		TextColor(10);
-		GotoXY(135, 10); cout << "$$$$$$$$$";
-		GotoXY(135, 11); cout << "       $$";
-		GotoXY(135, 12); cout << "       $$";
-		GotoXY(135, 13); cout << "$$$$$$$$$";
-		GotoXY(135, 14); cout << "       $$";
-		GotoXY(135, 15); cout << "       $$";
-		GotoXY(135, 16); cout << "$$$$$$$$$";
-		TextColor(7);
-	}
-	else if (Time == 160) {
-		TextColor(10);
-		GotoXY(135, 10); cout << "       $$";
-		GotoXY(135, 11); cout << "     $$  ";
-		GotoXY(135, 12); cout << "    $$   ";
-		GotoXY(135, 13); cout << "  $$   $$";
-		GotoXY(135, 14); cout << "$$$$$$$$$";
-		GotoXY(135, 15); cout << "       $$";
-		GotoXY(135, 16); cout << "       $$";
-		TextColor(7);
-	}
-	else if (Time == 200) {
-		TextColor(10);
-		GotoXY(135, 10); cout << " $$$$$$$$";
-		GotoXY(135, 11); cout << " $$      ";
-		GotoXY(135, 12); cout << " $$      ";
-		GotoXY(135, 13); cout << " $$$$$$$$";
-		GotoXY(135, 14); cout << "       $$";
-		GotoXY(135, 15); cout << "       $$";
-		GotoXY(135, 16); cout << " $$$$$$$$";
-		TextColor(7);
-	}
-	else if (Time == 240) {
-		TextColor(12);
-		GotoXY(130, 10); cout << " $$$$$$    $$$$$$ ";
-		GotoXY(130, 11); cout << "$$    $$  $$    $$";
-		GotoXY(130, 12); cout << "$$        $$    $$";
-		GotoXY(130, 13); cout << "$$  $$$$  $$    $$";
-		GotoXY(130, 14); cout << "$$    $$  $$    $$";
-		GotoXY(130, 15); cout << "$$    $$  $$    $$";
-		GotoXY(130, 16); cout << " $$$$$$    $$$$$$ ";
-		TextColor(7);
-	}
-	else if (Time == 280) {
-		GotoXY(130, 10); cout << "                  ";
-		GotoXY(130, 11); cout << "                  ";
-		GotoXY(130, 12); cout << "                  ";
-		GotoXY(130, 13); cout << "                  ";
-		GotoXY(130, 14); cout << "                  ";
-		GotoXY(130, 15); cout << "                  ";
-		GotoXY(130, 16); cout << "                  ";
+	if (Time <= 280)
+	{
+		if (Time == 40) {
+			TextColor(10);
+			GotoXY(135, 10); cout << "    $$";
+			GotoXY(135, 11); cout << "  $$$$";
+			GotoXY(135, 12); cout << "$$  $$";
+			GotoXY(135, 13); cout << "    $$";
+			GotoXY(135, 14); cout << "    $$";
+			GotoXY(135, 15); cout << "    $$";
+			GotoXY(135, 16); cout << "    $$";
+			TextColor(7);
+		}
+		else if (Time == 80) {
+			TextColor(10);
+			GotoXY(135, 10); cout << "$$$$$$$$$";
+			GotoXY(135, 11); cout << "       $$";
+			GotoXY(135, 12); cout << "      $$ ";
+			GotoXY(135, 13); cout << "    $$   ";
+			GotoXY(135, 14); cout << "  $$     ";
+			GotoXY(135, 15); cout << "$$       ";
+			GotoXY(135, 16); cout << "$$$$$$$$$";
+			TextColor(7);
+		}
+		else if (Time == 120) {
+			TextColor(10);
+			GotoXY(135, 10); cout << "$$$$$$$$$";
+			GotoXY(135, 11); cout << "       $$";
+			GotoXY(135, 12); cout << "       $$";
+			GotoXY(135, 13); cout << "$$$$$$$$$";
+			GotoXY(135, 14); cout << "       $$";
+			GotoXY(135, 15); cout << "       $$";
+			GotoXY(135, 16); cout << "$$$$$$$$$";
+			TextColor(7);
+		}
+		else if (Time == 160) {
+			TextColor(10);
+			GotoXY(135, 10); cout << "       $$";
+			GotoXY(135, 11); cout << "     $$  ";
+			GotoXY(135, 12); cout << "    $$   ";
+			GotoXY(135, 13); cout << "  $$   $$";
+			GotoXY(135, 14); cout << "$$$$$$$$$";
+			GotoXY(135, 15); cout << "       $$";
+			GotoXY(135, 16); cout << "       $$";
+			TextColor(7);
+		}
+		else if (Time == 200) {
+			TextColor(10);
+			GotoXY(135, 10); cout << " $$$$$$$$";
+			GotoXY(135, 11); cout << " $$      ";
+			GotoXY(135, 12); cout << " $$      ";
+			GotoXY(135, 13); cout << " $$$$$$$$";
+			GotoXY(135, 14); cout << "       $$";
+			GotoXY(135, 15); cout << "       $$";
+			GotoXY(135, 16); cout << " $$$$$$$$";
+			TextColor(7);
+		}
+		else if (Time == 240) {
+			TextColor(12);
+			GotoXY(130, 10); cout << " $$$$$$    $$$$$$ ";
+			GotoXY(130, 11); cout << "$$    $$  $$    $$";
+			GotoXY(130, 12); cout << "$$        $$    $$";
+			GotoXY(130, 13); cout << "$$  $$$$  $$    $$";
+			GotoXY(130, 14); cout << "$$    $$  $$    $$";
+			GotoXY(130, 15); cout << "$$    $$  $$    $$";
+			GotoXY(130, 16); cout << " $$$$$$    $$$$$$ ";
+			TextColor(7);
+		}
+		else if (Time == 280) {
+			GotoXY(130, 10); cout << "                  ";
+			GotoXY(130, 11); cout << "                  ";
+			GotoXY(130, 12); cout << "                  ";
+			GotoXY(130, 13); cout << "                  ";
+			GotoXY(130, 14); cout << "                  ";
+			GotoXY(130, 15); cout << "                  ";
+			GotoXY(130, 16); cout << "                  ";
+		}
 	}
 	if (player->levelUp())
 	{
@@ -385,7 +388,7 @@ void Game::addObstacle() {
 			}
 			case 4:
 			{
-				obs = new Dinausor(3, 4, 9, 5, speed);
+				obs = new Kuma(3, 4, 9, 5, speed);
 				break;
 			}
 			case 5:
@@ -440,7 +443,7 @@ void Game::saveGame(string name)
 
 	fwrite(PROOF, sizeof(char), strlen(PROOF), file);   // Write certificate
 	fwrite(&level, sizeof(int), 1, file);               // Write level
-
+	fwrite(&Time, sizeof(int), 1, file);
 
 	fwrite(&player->xPos, sizeof(int), 1, file);			// Write player position
 	fwrite(&player->yPos, sizeof(int), 1, file);			// Write player position
@@ -480,7 +483,7 @@ void Game::loadGame(string name)
 	if (speed <= 0)
 		speed = 1;
 	fread(&level, sizeof(int), 1, file);        // Read saved game level
-
+	fread(&Time, sizeof(int), 1, file);
 	fread(&player->xPos, sizeof(int), 1, file);			// Read player x position
 	fread(&player->yPos, sizeof(int), 1, file);			// Read player y position
 	fread(&lane, sizeof(int), 1, file);				// Read number of lane, tho it's default 6
@@ -520,7 +523,7 @@ void Game::loadGame(string name)
 			}
 			case 4:
 			{
-				obs = new Dinausor(tmp_y, 4, 9, 5, speed);
+				obs = new Kuma(tmp_y, 4, 9, 5, speed);
 				break;
 			}
 			case 5:

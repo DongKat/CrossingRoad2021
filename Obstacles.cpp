@@ -211,7 +211,6 @@ void Bird::draw()
 	for (int i = 0; i < 5; i++) {
 		GotoXY(getXPos() - 1, getLane() * 6 + i + 2);
 		cout << shape[i];
+	//TextColor(7);	  
 	}
 }
-	TextColor(7);
-}	  
