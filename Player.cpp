@@ -137,6 +137,8 @@ void Player::takeKBinput(Game* game)
 				catch (runtime_error e)
 				{
 					GotoXY(128, 15); cout << e.what();
+					Sleep(1000);
+					GotoXY(128, 15); cout << "           ";
 				}
 				GotoXY(128, 8); cout << "                         ";
 				GotoXY(128, 10); cout << "                        ";
