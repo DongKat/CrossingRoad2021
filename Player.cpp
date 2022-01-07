@@ -34,9 +34,22 @@ void Player::draw()
 	 |_  |_
 	*/
 
+	/*
+	"  / \\  ";
+	" ('_')	";
+	"/|   |\\";
+	" |||||	";
+	" |_  |_"
+	Dancing
+	"  / \\	";
+	"\\('_')/";
+	" |   |	";
+	" |||||	";
+	" |_  |_";
+	*/
 	GotoXY(xPos, yPos);     cout << " ('_') ";
 	GotoXY(xPos, yPos + 1); cout << "/|   |\\";
-	GotoXY(xPos, yPos + 2); cout << " |___| ";
+	GotoXY(xPos, yPos + 2); TextColor(4); cout << " ||||| "; TextColor(15);
 	GotoXY(xPos, yPos + 3); cout << " |_  |_";
 }
 
@@ -44,7 +57,7 @@ void Player::drawDead()
 {
 	GotoXY(xPos, yPos);     cout << " (x_x) ";
 	GotoXY(xPos, yPos + 1); cout << "/|   |\\";
-	GotoXY(xPos, yPos + 2); cout << " |___| ";
+	GotoXY(xPos, yPos + 2); TextColor(4); cout << " ||||| "; TextColor(15);
 	GotoXY(xPos, yPos + 3); cout << " |_  |_";
 }
 void Player::drawBoom()

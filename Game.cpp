@@ -304,8 +304,10 @@ void Game::gameOverAnimation()
 {
 	player->drawDead();
 	Sleep(800);
+	PlaySound("bomb.wav", NULL, SND_FILENAME | SND_ASYNC);
 	player->drawBoom();
 	Sleep(800);
+	PlaySound(NULL, NULL, NULL);
 	for (int i = 0; i < 3; ++i)
 	{
 		clrscr();

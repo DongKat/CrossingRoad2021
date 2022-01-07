@@ -57,6 +57,7 @@ int main()
 				{
 					// display Game over screen
 					game.gameOverAnimation();
+					PlaySound("./sound.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 					break;
 				}
 
