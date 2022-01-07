@@ -193,15 +193,6 @@ void Game::draw()
 	GotoXY(132, 2);
 	cout << "Level: " << level;
 	player->draw();
-	drawBoard(128, 26, 144, 35);
-	GotoXY(130, 27);	cout << "INSTRUCTION";
-	GotoXY(130, 28);	cout << "W: Up";
-	GotoXY(130, 29);	cout << "S: Down";
-	GotoXY(130, 30);	cout << "A: Left";
-	GotoXY(130, 31);	cout << "D: Right";
-	GotoXY(130, 32);	cout << "P: Pause";
-	GotoXY(130, 33);	cout << "T: Save";
-	GotoXY(130, 34);	cout << "L: Load";
 	for (int i = 0; i < lane; i++)
 		for (int j = 0; j < obsList[i].size(); j++)
 			obsList[i][j]->draw();
@@ -224,6 +215,12 @@ void Game::draw()
 
 		cout << char(22);
 	}
+	TextColor(8);
+	for (int i = xMap + 1; i <= 153; i++)
+	{
+		GotoXY(i, 0);
+		cout << char(223);
+	}
 	TextColor(7);
 }
 
@@ -240,6 +237,16 @@ void Game::InitDraw()
 		for (int i = 0; i < 8; i++)
 			cout << "_________      ";
 	}
+	TextColor(7);
+	drawBoard(128, 26, 144, 35);
+	GotoXY(130, 27);	cout << "INSTRUCTION";
+	GotoXY(130, 28);	cout << "W: Up";
+	GotoXY(130, 29);	cout << "S: Down";
+	GotoXY(130, 30);	cout << "A: Left";
+	GotoXY(130, 31);	cout << "D: Right";
+	GotoXY(130, 32);	cout << "P: Pause";
+	GotoXY(130, 33);	cout << "T: Save";
+	GotoXY(130, 34);	cout << "L: Load";
 	GotoXY(1, 1);
 	for (int i = 0; i <= xMap - 2; i++) {
 
@@ -273,7 +280,6 @@ void Game::InitDraw()
 		GotoXY(i, 4);
 		cout << char(223);
 	}
-	TextColor(7);
 	GotoXY(0, 0);
 }
 
