@@ -49,7 +49,7 @@ protected:
 	int speed;
 public:
 	Obstacles(int xPos, int lane, int length, int width, int speed);
-	void updatePosition();
+	virtual void updatePosition() = 0;
 	virtual void draw() = 0;
 	virtual void popShape() = 0;
 	int getXPos();
@@ -67,6 +67,7 @@ class Dinausor : public Obstacles
 
 public:
 	Dinausor(int xPos, int lane, int length, int width, int speed);
+	void updatePosition();
 	void popShape();
 	void draw();
 };
@@ -76,6 +77,7 @@ class Car : public Obstacles
 
 public:
 	Car(int xPos, int lane, int length, int width, int speed);
+	void updatePosition();
 	void popShape();
 	void draw();
 };
@@ -85,6 +87,7 @@ class Bike : public Obstacles
 
 public:
 	Bike(int xPos, int lane, int length, int width, int speed);
+	void updatePosition();
 	void popShape();
 	void draw();
 };
@@ -94,6 +97,7 @@ class Truck : public Obstacles
 
 public:
 	Truck(int xPos, int lane, int length, int width, int speed);
+	void updatePosition();
 	void popShape();
 	void draw();
 };
@@ -102,6 +106,7 @@ class Kuma : public Obstacles
 {
 public:
 	Kuma(int xPos, int lane, int length, int width, int speed);
+	void updatePosition();
 	void popShape();
 	void draw();
 };
@@ -110,6 +115,7 @@ class Bird : public Obstacles
 {
 public:
 	Bird(int xPos, int lane, int length, int width, int speed);
+	void updatePosition();
 	void popShape();
 	void draw();
 };

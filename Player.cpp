@@ -79,14 +79,14 @@ void Player::takeKBinput(Game* game)
 				clearPlayer();
 				GotoXY(xPos, yPos);
 				cout << " ";
-				xPos -= 7;
+				xPos -= 5;
 			}
 			else if ((input == 'd' || input == 'D') && xPos < game->xMap - this->length - 5)
 			{
 				clearPlayer();
 				GotoXY(xPos, yPos);
 				cout << " ";
-				xPos += 7;
+				xPos += 5;
 			}
 			else if (input == 'w' || input == 'W') {
 				if (yPos > 3) {

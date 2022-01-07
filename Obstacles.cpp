@@ -9,14 +9,6 @@ Obstacles::Obstacles(int xPos, int lane, int length, int width, int speed)
 	this->speed = speed;
 }
 
-void Obstacles::updatePosition()
-{
-	/*if (lane % 2 == 0)*/
-	xPos += 1;
-	/*else
-		xPos -= 1;*/
-}
-
 int Obstacles::getXPos()
 {
 	return xPos;
@@ -61,9 +53,13 @@ void Obstacles::clearObstacle()
 			cout << " ";
 	}
 }
+void Dinausor::updatePosition()
+{
+	xPos += 1;
+}
 
 Dinausor::Dinausor(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed) {
-	shape.resize(5);	
+	shape.resize(5);
 	shape[0] = "    ____ ";
 	shape[1] = "   | o__|";
 	shape[2] = " \\_/  |__";
@@ -88,17 +84,23 @@ void Dinausor::draw()
 	TextColor(7);
 }
 
+void Car::updatePosition()
+{
+	xPos -= 1;
+}
+
 Car::Car(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed) {
 	shape.resize(3);
 	char i = 22;
-	shape[0] = "     _____     ";
-	shape[1] = shape[1] + "  __/    " + char(254) + "\\___ ";
-	shape[2] = shape[2] + " " + char(192) + i + char(233) + i + i + i + i + i + i + i + char(233) + i + i + char(188);
+	shape[0] = /*"    _____     ";  */"     _____     ";
+	shape[1] = shape[1] + /*" __/    " + char(254) + "\\___ "; */  " ___/" + char(254) + "    \\__  ";
+	/*shape[2] = shape[2] + char(192) + i + char(233) + i + i + i + i + i + i + i + char(233) + i + i + char(188) + "";*/
+	shape[2] = shape[2] + char(200) + i + i + char(233) + i + i + i + i + i + i + i + char(233) + i + char(217) + " ";
 }
 
 void Car::popShape() {
 	for (int i = 0; i < 3; i++) {
-		shape[i].pop_back();
+		shape[i].erase(shape[i].begin());
 	}
 	length--;
 }
@@ -107,23 +109,27 @@ void Car::draw()
 {
 	TextColor(14);
 	for (int i = 0; i < 3; i++) {
-		GotoXY(getXPos() - 1, getLane() * 6 + i + 4);
+		GotoXY(getXPos(), getLane() * 6 + i + 4);
 		cout << shape[i];
 	}
 	TextColor(7);
 }
 
-Bike::Bike(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed) {
-	shape.resize(3);
-	shape[0] = "     o__   ";
-	shape[1] = "    /_  \\  ";
-	shape[2] = shape[2] + " (" + char(15) + ")  \\ (" + char(15) + ")";
+void Bike::updatePosition()
+{
+	xPos -= 1;
 }
 
+Bike::Bike(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed) {
+	shape.resize(3);
+	shape[0] = /*"    o__   ";*/  "   __o     ";
+	shape[1] = /*"   /_  \\  ";*/ "  /  _\\    ";
+	shape[2] = shape[2] +/* "(" + char(15) + ")  \\ (" + char(15) + ")";*/ "(" + char(15) + ") /  (" + char(15) + ") ";
+}
 
 void Bike::popShape() {
 	for (int i = 0; i < 3; i++) {
-		shape[i].pop_back();
+		shape[i].erase(shape[i].begin());
 	}
 	length--;
 }
@@ -132,19 +138,25 @@ void Bike::draw()
 {
 	TextColor(14);
 	for (int i = 0; i < 3; i++) {
-		GotoXY(getXPos() - 1, getLane() * 6 + i + 4);
+		GotoXY(getXPos(), getLane() * 6 + i + 4);
 		cout << shape[i];
 	}
 	TextColor(7);
 }
+
+void Truck::updatePosition()
+{
+	xPos += 1;
+}
+
 Truck::Truck(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed) {
 	shape.resize(5);
 	char i = 196;
-	shape[0]= "  ______________        ";
-	shape[1]= " |              |___    ";
-	shape[2]= shape[2] + " |              | " + char(254) + " |__ ";
-	shape[3]= " |______________|      |";
-	shape[4]= shape[4] +" " + char(192) + i + i + i + "(o)" + i + i + i + i + i + i + i + i + i + i + i + "(o)" + i + char(188);
+	shape[0] = "  ______________        ";
+	shape[1] = " |              |___    ";
+	shape[2] = shape[2] + " |              | " + char(254) + " |__ ";
+	shape[3] = " |______________|      |";
+	shape[4] = shape[4] + " " + char(192) + i + i + i + "(o)" + i + i + i + i + i + i + i + i + i + i + i + "(o)" + i + char(188);
 }
 
 void Truck::popShape() {
@@ -163,18 +175,23 @@ void Truck::draw()
 	}
 }
 
+void Kuma::updatePosition()
+{
+	xPos -= 1;
+}
+
 Kuma::Kuma(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed)
 {
 	shape.resize(4);
-	shape[0] = "    /|/|";
-	shape[1] = "  /00  |";
-	shape[2] = " |/^^\\ |";
-	shape[3] = "  \\m_m_|";
+	shape[0] = "   /|/| ";
+	shape[1] = " /00  | ";
+	shape[2] = "|/^^\\ | ";
+	shape[3] = " \\m_m_| ";
 }
 void Kuma::popShape()
 {
 	for (int i = 0; i < 4; i++) {
-		shape[i].pop_back();
+		shape[i].erase(shape[i].begin());
 	}
 	length--;
 }
@@ -183,11 +200,17 @@ void Kuma::draw()
 	// # RGB Bear (Totoro)
 	TextColor(rand() % 15);
 	for (int i = 0; i < 4; i++) {
-		GotoXY(getXPos()-1, getLane() * 6 + i + 3);
+		GotoXY(getXPos() - 1, getLane() * 6 + i + 3);
 		cout << shape[i];
 	}
 	TextColor(15);
 }
+
+void Bird::updatePosition()
+{
+	xPos += 1;
+}
+
 Bird::Bird(int xPos, int lane, int length, int width, int speed) : Obstacles(xPos, lane, length, width, speed)
 {
 	shape.resize(5);
@@ -211,6 +234,6 @@ void Bird::draw()
 	for (int i = 0; i < 5; i++) {
 		GotoXY(getXPos() - 1, getLane() * 6 + i + 2);
 		cout << shape[i];
-	//TextColor(7);	  
+		//TextColor(7);	  
 	}
 }

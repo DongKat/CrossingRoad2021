@@ -73,11 +73,17 @@ void Game::updateFrame()
 		{
 			if (Time % obsList[i][j]->getSpeed() == 0)
 			{
-				obsList[i][j]->updatePosition();
+				if (obsList[i][j]->getXPos() <= 3 && i % 2 == 0)
+				{
+					obsList[i][j]->popShape();
+				}
+				else
+					obsList[i][j]->updatePosition();
 				if (obsList[i][j]->getXPos() + obsList[i][j]->getLength() - 1 >= xMap)
 				{
 					obsList[i][j]->popShape();
 				}
+				
 			}
 
 			if (obsList[i][j]->getXPos() == xMap)
@@ -92,9 +98,9 @@ void Game::updateFrame()
 				trafficLight[i] = false;
 		}
 	}
-	if (Time <= 280)
+	if (Time <= 240)
 	{
-		if (Time == 200) {
+		if (Time == 160) {
 			TextColor(10);
 			GotoXY(130, 8);		cout << "    $$   ";
 			GotoXY(130, 9);		cout << "  $$$$   ";
@@ -105,7 +111,7 @@ void Game::updateFrame()
 			GotoXY(130, 14);	cout << "$$$$$$$$$";
 			TextColor(7);
 		}
-		else if (Time == 160) {
+		else if (Time == 120) {
 			TextColor(10);
 			GotoXY(130, 8);		cout << " $$$$$$$ ";
 			GotoXY(130, 9);		cout << "$$     $$";
@@ -116,7 +122,7 @@ void Game::updateFrame()
 			GotoXY(130, 14);	cout << "$$$$$$$$$";
 			TextColor(7);
 		}
-		else if (Time == 120) {
+		else if (Time == 80) {
 			TextColor(10);
 			GotoXY(130, 8);		cout << "$$$$$$$$$";
 			GotoXY(130, 9);		cout << "       $$";
@@ -127,7 +133,7 @@ void Game::updateFrame()
 			GotoXY(130, 14);	cout << "$$$$$$$$$";
 			TextColor(7);
 		}
-		else if (Time == 80) {
+		else if (Time == 40) {
 			TextColor(10);
 			GotoXY(130, 8);		cout << "       $$";
 			GotoXY(130, 9);		cout << "     $$  ";
@@ -138,7 +144,7 @@ void Game::updateFrame()
 			GotoXY(130, 14);	cout << "       $$";
 			TextColor(7);
 		}
-		else if (Time == 40) {
+		else if (Time == 10) {
 			TextColor(10);
 			GotoXY(130, 8);		cout << " $$$$$$$$";
 			GotoXY(130, 9);		cout << " $$      ";
@@ -149,7 +155,7 @@ void Game::updateFrame()
 			GotoXY(130, 14);	cout << " $$$$$$$$";
 			TextColor(7);
 		}
-		else if (Time == 240) {
+		else if (Time == 200) {
 			TextColor(12);
 			GotoXY(130, 8);  cout << " $$$$$$    $$$$$$ ";
 			GotoXY(130, 9);  cout << "$$    $$  $$    $$";
@@ -160,7 +166,7 @@ void Game::updateFrame()
 			GotoXY(130, 14); cout << " $$$$$$    $$$$$$ ";
 			TextColor(7);
 		}
-		else if (Time == 280) {
+		else if (Time == 240) {
 			GotoXY(130, 8);  cout << "                  ";
 			GotoXY(130, 9);  cout << "                  ";
 			GotoXY(130, 10); cout << "                  ";
@@ -377,7 +383,7 @@ void Game::addObstacle() {
 			switch (j) {
 			case 0:
 			{
-				obs = new Car(3, 0, 15, 3, speed);
+				obs = new Car(104, 0, 15, 3, speed);
 				break;
 			}
 			case 1:
@@ -387,7 +393,7 @@ void Game::addObstacle() {
 			}
 			case 2:
 			{
-				obs = new Bike(3, 2, 11, 3, speed);
+				obs = new Bike(108, 2, 11, 3, speed);
 				break;
 			}
 			case 3:
@@ -397,7 +403,7 @@ void Game::addObstacle() {
 			}
 			case 4:
 			{
-				obs = new Kuma(3, 4, 8, 4, speed);
+				obs = new Kuma(111, 4, 8, 4, speed);
 				//obs = new Dinausor(3, 4, 9, 5, speed);
 				break;
 			}
@@ -411,11 +417,12 @@ void Game::addObstacle() {
 				break;
 			}
 			}
-			for (int k = 0; k < obsList[j].size(); k++)
-				if (obs->getSpeed() < obsList[j][k]->getSpeed() || obs->getLength() + 2 >= obsList[j][k]->getXPos()) {
+			for (int k = 0; k < obsList[j].size(); k++) {
+				if ((j % 2 != 0 && obs->getLength() + 4 >= obsList[j][k]->getXPos()) || (j % 2 == 0 && xMap - 2 * obs->getLength() <= obsList[j][k]->getXPos())) {
 					delete obs;
 					return;
 				}
+			}
 			obsList[j].push_back(obs);
 		}
 	}
