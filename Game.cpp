@@ -190,6 +190,23 @@ void Game::draw()
 	cout << "Player: x: " << player->getXPos() << " y: " << player->getYPos();
 
 	player->draw();
+	drawBoard(122, 6, 138, 16);
+	GotoXY(125, 7);
+	cout << "INSTRUCTION";
+	GotoXY(124, 8);
+	cout << "W: go up";
+	GotoXY(124, 9);
+	cout << "S: go down";
+	GotoXY(124, 10);
+	cout << "A: go left";
+	GotoXY(124, 11);
+	cout << "D: go right";
+	GotoXY(124, 12);
+	cout << "P: pause";
+	GotoXY(124, 13);
+	cout << "S: save";
+	GotoXY(124, 14);
+	cout << "L: load";
 	for (int i = 0; i < lane; i++)
 		for (int j = 0; j < obsList[i].size(); j++)
 			obsList[i][j]->draw();
