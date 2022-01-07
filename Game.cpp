@@ -336,6 +336,9 @@ void Game::gameOverAnimation()
 		clrscr();
 		Sleep(400);
 	}
+	FILE* file = fopen("highscore", "wb");
+	fwrite(&level , sizeof(int), 1, file);
+	fclose(file);
 }
 
 int Game::getTime()

@@ -87,21 +87,21 @@ void Player::takeKBinput(Game* game)
 		if (kbhit())
 		{
 			char input = getch();
-			if ((input == 'a' || input == 'A') && xPos > 5)
+			if ((input == 'a' || input == 'A' || input == 75) && xPos > 5 )
 			{
 				clearPlayer();
 				GotoXY(xPos, yPos);
 				cout << " ";
 				xPos -= 3;
 			}
-			else if ((input == 'd' || input == 'D') && xPos < game->xMap - this->length - 5)
+			else if ((input == 'd' || input == 'D' || input == 77) && xPos < game->xMap - this->length - 5)
 			{
 				clearPlayer();
 				GotoXY(xPos, yPos);
 				cout << " ";
 				xPos += 3;
 			}
-			else if (input == 'w' || input == 'W') {
+			else if (input == 'w' || input == 'W' || input == 72) {
 				if (yPos > 3) {
 					clearPlayer();
 					GotoXY(xPos, yPos);
@@ -111,7 +111,7 @@ void Player::takeKBinput(Game* game)
 				else
 					levelup = true;
 			}
-			else if ((input == 's' || input == 'S') && yPos <= game->yMap - this->width)
+			else if ((input == 's' || input == 'S' || input == 80) && yPos <= game->yMap - this->width)
 			{
 				clearPlayer();
 				GotoXY(xPos, yPos);

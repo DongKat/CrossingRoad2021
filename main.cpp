@@ -38,7 +38,7 @@ int main()
 					GotoXY(54, 18); cout << "Can't load save file. Please enter again";
 					Sleep(1000);
 					GotoXY(54, 18); cout << "                                                    ";
-					continue;
+					//continue;
 				}
 				break;
 			}

@@ -14,6 +14,25 @@ void Menu::drawMenu()
 	TextColor(3);
 	GotoXY(39, 37); cout << "USE ARROWS TO NAVIGATE THE MENU";
 	TextColor(15);
+	drawBoard(119, 17, 130, 20);
+	GotoXY(120, 18); cout << "High Score";
+	GotoXY(120, 19); 
+	try
+	{
+		FILE* file = fopen("highscore", "rb");	// Write file in binary mode
+		if (!file)
+			throw runtime_error("Highscore error");
+		int temp;
+		fread(&temp, sizeof(int), 1, file);
+		cout << temp;
+		fclose(file);
+	}
+	catch (runtime_error const &e)
+	{
+		cout << "1";
+	}
+
+
 }
 void Menu::drawTitle()
 {	
