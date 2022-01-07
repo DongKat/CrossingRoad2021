@@ -13,7 +13,7 @@ int main()
 	ShowConsoleCursor(false);
 	while (true)
 	{
-		memu.drawTitle();
+		GotoXY(16, 5);
 		memu.drawMenu();
 		memu.drawChoice();
 		int tmp = memu.updateChoice();
@@ -35,8 +35,8 @@ int main()
 				}
 				catch (runtime_error e)
 				{
-					GotoXY(27, 18); cout << "Can't load save file. Please enter again";
-					GotoXY(27, 18); cout << "                                                    ";
+					GotoXY(54, 26); cout << "Can't load save file. Please enter again";
+					GotoXY(54, 23); cout << "                                                    ";
 					continue;
 				}
 				break;

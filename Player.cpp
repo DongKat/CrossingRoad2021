@@ -123,11 +123,11 @@ void Player::takeKBinput(Game* game)
 				try
 				{
 					string temp;
-					TextColor(12);		GotoXY(128, 27); cout << "LOAD GAME ";
-					TextColor(6);		GotoXY(128, 30); cout << "Enter save file name: " << endl;
+					TextColor(12);		GotoXY(128, 8); cout << "LOAD GAME ";
+					TextColor(6);		GotoXY(128, 10); cout << "Enter save file name: " << endl;
 					cin.clear();
 					ShowConsoleCursor(true);
-					GotoXY(128, 32);	getline(cin, temp);
+					GotoXY(128, 12);	getline(cin, temp);
 					ShowConsoleCursor(false);
 					TextColor(15);
 					game->loadGame(temp);
@@ -136,38 +136,41 @@ void Player::takeKBinput(Game* game)
 				}
 				catch (runtime_error e)
 				{
-					GotoXY(128, 34); cout << e.what();
+					GotoXY(128, 15); cout << e.what();
 				}
+				GotoXY(128, 8); cout << "                         ";
+				GotoXY(128, 10); cout << "                        ";
+				GotoXY(128, 12); cout << "                        ";
 			}
 			else if ((input == 't' || input == 'T')) // Hit Save game
 			{
 				try
 				{
 					string temp;
-					TextColor(12); GotoXY(128, 27); cout << "SAVE GAME ";
-					TextColor(6); GotoXY(128, 30); cout << "Enter save file name: " << endl;
+					TextColor(12); GotoXY(128, 8); cout << "SAVE GAME ";
+					TextColor(6); GotoXY(128, 10); cout << "Enter save file name: " << endl;
 					cin.clear();
 					ShowConsoleCursor(true);
-					GotoXY(128, 32);	getline(cin, temp);
+					GotoXY(128, 12);	getline(cin, temp);
 					ShowConsoleCursor(false);
 					TextColor(15);
 					game->saveGame(temp);
 				}
 				catch (runtime_error e)
 				{
-					GotoXY(128, 34); cout << e.what();
+					GotoXY(128, 15); cout << e.what();
 				}
-				GotoXY(128, 27); cout << "                                  ";
-				GotoXY(128, 30); cout << "                                  ";
-				GotoXY(128, 32); cout << "                                  ";
+				GotoXY(128, 8); cout << "                         ";
+				GotoXY(128, 10); cout << "                        ";
+				GotoXY(128, 12); cout << "                        ";
 
 			}
 			else if ((input == 'p' || input == 'P'))
 			{
 				int i = 0;
-				TextColor(12); GotoXY(128, 27); cout << "PAUSE ";
-				TextColor(6); GotoXY(128, 30); cout << "RESUME " << endl;
-				TextColor(15); GotoXY(128, 32); cout << "EXIT  " << endl;
+				TextColor(12); GotoXY(133, 8); cout << "PAUSE ";
+				TextColor(6); GotoXY(133, 10); cout << "RESUME " << endl;
+				TextColor(15); GotoXY(133, 12); cout << "EXIT  " << endl;
 
 				while (true)
 				{
@@ -187,15 +190,15 @@ void Player::takeKBinput(Game* game)
 						if (input == 13)
 						{
 							// Resume 
-							GotoXY(128, 27); cout << "          ";
-							GotoXY(128, 30); cout << "          ";
-							GotoXY(128, 32); cout << "          ";
+							GotoXY(133, 8); cout << "          ";
+							GotoXY(133, 10); cout << "          ";
+							GotoXY(133, 12); cout << "          ";
 							break;
 						}
 						TextColor(6);
-						GotoXY(128, 30); cout << "RESUME " << endl;
+						GotoXY(133, 10); cout << "RESUME " << endl;
 						TextColor(15);
-						GotoXY(128, 32); cout << "EXIT  " << endl;
+						GotoXY(133, 12); cout << "EXIT  " << endl;
 					}
 					if (i == 1)
 					{
@@ -206,9 +209,9 @@ void Player::takeKBinput(Game* game)
 							break;
 						}
 						TextColor(15);
-						GotoXY(128, 30); cout << "RESUME " << endl;
+						GotoXY(133, 10); cout << "RESUME " << endl;
 						TextColor(6);
-						GotoXY(128, 32); cout << "EXIT  " << endl;
+						GotoXY(133, 12); cout << "EXIT  " << endl;
 						TextColor(15);
 					}
 				}
