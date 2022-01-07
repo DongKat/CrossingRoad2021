@@ -36,6 +36,7 @@ int main()
 				catch (runtime_error e)
 				{
 					GotoXY(27, 18); cout << "Can't load save file. Please enter again";
+					Sleep(1000);
 					GotoXY(27, 18); cout << "                                                    ";
 					continue;
 				}

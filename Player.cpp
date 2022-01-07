@@ -92,14 +92,14 @@ void Player::takeKBinput(Game* game)
 				clearPlayer();
 				GotoXY(xPos, yPos);
 				cout << " ";
-				xPos -= 5;
+				xPos -= 3;
 			}
 			else if ((input == 'd' || input == 'D') && xPos < game->xMap - this->length - 5)
 			{
 				clearPlayer();
 				GotoXY(xPos, yPos);
 				cout << " ";
-				xPos += 5;
+				xPos += 3;
 			}
 			else if (input == 'w' || input == 'W') {
 				if (yPos > 3) {
@@ -123,6 +123,18 @@ void Player::takeKBinput(Game* game)
 				try
 				{
 					string temp;
+					// Erase instruction board
+					GotoXY(128, 26);	cout << "                  ";
+					GotoXY(128, 27);	cout << "                  ";
+					GotoXY(128, 28);	cout << "                  ";
+					GotoXY(128, 29);	cout << "                  ";
+					GotoXY(128, 30);	cout << "                  ";
+					GotoXY(128, 31);	cout << "                  ";
+					GotoXY(128, 32);	cout << "                  ";
+					GotoXY(128, 33);	cout << "                  ";
+					GotoXY(128, 34);	cout << "                  ";
+					GotoXY(128, 35);	cout << "                  ";
+
 					TextColor(12);		GotoXY(128, 27); cout << "LOAD GAME ";
 					TextColor(6);		GotoXY(128, 30); cout << "Enter save file name: " << endl;
 					cin.clear();
@@ -137,6 +149,26 @@ void Player::takeKBinput(Game* game)
 				catch (runtime_error e)
 				{
 					GotoXY(128, 34); cout << e.what();
+					Sleep(1000);
+					GotoXY(128, 26);	cout << "                      ";
+					GotoXY(128, 27);	cout << "                      ";
+					GotoXY(128, 28);	cout << "                      ";
+					GotoXY(128, 29);	cout << "                      ";
+					GotoXY(128, 30);	cout << "                      ";
+					GotoXY(128, 31);	cout << "                      ";
+					GotoXY(128, 32);	cout << "                      ";
+					GotoXY(128, 33);	cout << "                      ";
+					GotoXY(128, 34);	cout << "                      ";
+					GotoXY(128, 35);	cout << "                      ";
+					drawBoard(128, 26, 144, 35);
+					GotoXY(130, 27);	cout << "INSTRUCTION";
+					GotoXY(130, 28);	cout << "W: Up";
+					GotoXY(130, 29);	cout << "S: Down";
+					GotoXY(130, 30);	cout << "A: Left";
+					GotoXY(130, 31);	cout << "D: Right";
+					GotoXY(130, 32);	cout << "P: Pause";
+					GotoXY(130, 33);	cout << "T: Save";
+					GotoXY(130, 34);	cout << "L: Load";
 				}
 			}
 			else if ((input == 't' || input == 'T')) // Hit Save game
@@ -144,6 +176,18 @@ void Player::takeKBinput(Game* game)
 				try
 				{
 					string temp;
+					// Erase instruction board
+					GotoXY(128, 26);	cout << "                  ";
+					GotoXY(128, 27);	cout << "                  ";
+					GotoXY(128, 28);	cout << "                  ";
+					GotoXY(128, 29);	cout << "                  ";
+					GotoXY(128, 30);	cout << "                  ";
+					GotoXY(128, 31);	cout << "                  ";
+					GotoXY(128, 32);	cout << "                  ";
+					GotoXY(128, 33);	cout << "                  ";
+					GotoXY(128, 34);	cout << "                  ";
+					GotoXY(128, 35);	cout << "                  ";
+
 					TextColor(12); GotoXY(128, 27); cout << "SAVE GAME ";
 					TextColor(6); GotoXY(128, 30); cout << "Enter save file name: " << endl;
 					cin.clear();
@@ -152,19 +196,41 @@ void Player::takeKBinput(Game* game)
 					ShowConsoleCursor(false);
 					TextColor(15);
 					game->saveGame(temp);
+					GotoXY(128, 27);	cout << "                      ";
+					GotoXY(128, 30);	cout << "                      ";
+					GotoXY(128, 32);	cout << "                      ";
+					// Draw instruction board again
+					drawBoard(128, 26, 144, 35);
+					GotoXY(130, 27);	cout << "INSTRUCTION";
+					GotoXY(130, 28);	cout << "W: Up";
+					GotoXY(130, 29);	cout << "S: Down";
+					GotoXY(130, 30);	cout << "A: Left";
+					GotoXY(130, 31);	cout << "D: Right";
+					GotoXY(130, 32);	cout << "P: Pause";
+					GotoXY(130, 33);	cout << "T: Save";
+					GotoXY(130, 34);	cout << "L: Load";
 				}
 				catch (runtime_error e)
 				{
 					GotoXY(128, 34); cout << e.what();
 				}
-				GotoXY(128, 27); cout << "                                  ";
-				GotoXY(128, 30); cout << "                                  ";
-				GotoXY(128, 32); cout << "                                  ";
 
 			}
 			else if ((input == 'p' || input == 'P'))
 			{
 				int i = 0;
+				// Erase instruction board
+				GotoXY(128, 26);	cout << "                  ";
+				GotoXY(128, 27);	cout << "                  ";
+				GotoXY(128, 28);	cout << "                  ";
+				GotoXY(128, 29);	cout << "                  ";
+				GotoXY(128, 30);	cout << "                  ";
+				GotoXY(128, 31);	cout << "                  ";
+				GotoXY(128, 32);	cout << "                  ";
+				GotoXY(128, 33);	cout << "                  ";
+				GotoXY(128, 34);	cout << "                  ";
+				GotoXY(128, 35);	cout << "                  ";
+
 				TextColor(12); GotoXY(128, 27); cout << "PAUSE ";
 				TextColor(6); GotoXY(128, 30); cout << "RESUME " << endl;
 				TextColor(15); GotoXY(128, 32); cout << "EXIT  " << endl;
@@ -190,6 +256,15 @@ void Player::takeKBinput(Game* game)
 							GotoXY(128, 27); cout << "          ";
 							GotoXY(128, 30); cout << "          ";
 							GotoXY(128, 32); cout << "          ";
+							drawBoard(128, 26, 144, 35);
+							GotoXY(130, 27);	cout << "INSTRUCTION";
+							GotoXY(130, 28);	cout << "W: Up";
+							GotoXY(130, 29);	cout << "S: Down";
+							GotoXY(130, 30);	cout << "A: Left";
+							GotoXY(130, 31);	cout << "D: Right";
+							GotoXY(130, 32);	cout << "P: Pause";
+							GotoXY(130, 33);	cout << "T: Save";
+							GotoXY(130, 34);	cout << "L: Load";
 							break;
 						}
 						TextColor(6);
