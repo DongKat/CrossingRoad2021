@@ -68,9 +68,9 @@ void Player::drawBoom()
 
 void Player::takeKBinput(Game* game)
 {
-	if (game->Time == 200) 
+	if (game->Time == 240) 
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-	if (game->Time > 200) {
+	if (game->Time > 240) {
 		if (kbhit())
 		{
 			char input = getch();
@@ -159,12 +159,12 @@ void Player::takeKBinput(Game* game)
 				while (true)
 				{
 					input = getch();
-					if (input == 'w' || input == 'W')
+					if (input == 'w' || input == 'W' || input == 80)
 					{
 						if (i < 1) i++;
 						else i = 0;
 					}
-					if (input == 's' || input == 'S')
+					if (input == 's' || input == 'S' || input == 72)
 					{
 						if (i > 0) i--;
 						else i = 1;

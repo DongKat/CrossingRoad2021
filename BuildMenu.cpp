@@ -8,8 +8,12 @@ void Menu::drawMenu()
 {
 	clrscr();
 	drawTitle();
-	drawBoard(10, 12, 90, 30);
-	drawBoard(25, 12, 90, 30);
+	drawBoard(10, 12, 91, 30);
+	drawBoard(25, 12, 91, 30);
+	drawBoard(10, 31, 45, 33);
+	TextColor(3);
+	GotoXY(12, 32); cout << "USE ARROWS TO NAVIGATE THE MENU";
+	TextColor(15);
 }
 void Menu::drawTitle()
 {
@@ -43,7 +47,7 @@ void Menu::clear()
 	for (int i = 14; i < 30; ++i)
 	{
 		GotoXY(26, i);
-		cout << "                                                                ";
+		cout << "                                                                 ";
 	}
 }
 int Menu::updateChoice()
@@ -138,9 +142,9 @@ void Menu::drawDescription(int x)
 		GotoXY(51, 14);
 		cout << "DESCRIPTION";
 		GotoXY(27, 16);
-		cout << "The object of the game, is to cross the street without getting" << endl;
+		cout << "The objective of the game is to cross the street without getting" << endl;
 		GotoXY(27, 17);
-		cout << "hit by any vehicles or animals";
+		cout << "hit by vehicles or animals. Good luck!";
 		break;
 
 	}
