@@ -16,7 +16,7 @@ void Menu::drawMenu()
 	TextColor(15);
 }
 void Menu::drawTitle()
-{
+{	
 	TextColor(9);
 	for (int i = 0; i < 6; i++)
 	{
@@ -149,7 +149,7 @@ void Menu::drawDescription(int x)
 		cout << "they ride on vehicles or disguised as innocent animals.";
 		GotoXY(27, 19);
 		cout << "They will do their best to destroy the bomb so avoid them at ";
-		GotoXY(27, 10);
+		GotoXY(27, 20);
 		cout << "all cost!";
 		GotoXY(27, 22);
 		cout << "Good luck out there agent!";
