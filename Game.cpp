@@ -83,7 +83,7 @@ void Game::updateFrame()
 				{
 					obsList[i][j]->popShape();
 				}
-				
+
 			}
 
 			if (obsList[i][j]->getXPos() == xMap)
@@ -102,78 +102,78 @@ void Game::updateFrame()
 	{
 		if (Time == 160) {
 			TextColor(10);
-			GotoXY(130, 8);		cout << "    $$   ";
-			GotoXY(130, 9);		cout << "  $$$$   ";
-			GotoXY(130, 10);	cout << "$$  $$   ";
-			GotoXY(130, 11);	cout << "    $$   ";
-			GotoXY(130, 12);	cout << "    $$   ";
-			GotoXY(130, 13);	cout << "    $$   ";
-			GotoXY(130, 14);	cout << "$$$$$$$$$";
+			GotoXY(133, 10);	cout << "    $$   ";
+			GotoXY(133, 11);	cout << "  $$$$   ";
+			GotoXY(133, 12);	cout << "$$  $$   ";
+			GotoXY(133, 13);	cout << "    $$   ";
+			GotoXY(133, 14);	cout << "    $$   ";
+			GotoXY(133, 15);	cout << "    $$   ";
+			GotoXY(133, 16);	cout << "$$$$$$$$$";
 			TextColor(7);
 		}
 		else if (Time == 120) {
 			TextColor(10);
-			GotoXY(130, 8);		cout << " $$$$$$$ ";
-			GotoXY(130, 9);		cout << "$$     $$";
-			GotoXY(130, 10);	cout << "     $$  ";
-			GotoXY(130, 11);	cout << "   $$    ";
-			GotoXY(130, 12);	cout << " $$      ";
-			GotoXY(130, 13);	cout << "$$       ";
-			GotoXY(130, 14);	cout << "$$$$$$$$$";
+			GotoXY(133, 10);	cout << " $$$$$$$ ";
+			GotoXY(133, 11);	cout << "$$     $$";
+			GotoXY(133, 12);	cout << "     $$  ";
+			GotoXY(133, 13);	cout << "   $$    ";
+			GotoXY(133, 14);	cout << " $$      ";
+			GotoXY(133, 15);	cout << "$$       ";
+			GotoXY(133, 16);	cout << "$$$$$$$$$";
 			TextColor(7);
 		}
 		else if (Time == 80) {
 			TextColor(10);
-			GotoXY(130, 8);		cout << "$$$$$$$$$";
-			GotoXY(130, 9);		cout << "       $$";
-			GotoXY(130, 10);	cout << "       $$";
-			GotoXY(130, 11);	cout << "$$$$$$$$$";
-			GotoXY(130, 12);	cout << "       $$";
-			GotoXY(130, 13);	cout << "       $$";
-			GotoXY(130, 14);	cout << "$$$$$$$$$";
+			GotoXY(133, 10);	cout << "$$$$$$$$$";
+			GotoXY(133, 11);	cout << "       $$";
+			GotoXY(133, 12);	cout << "       $$";
+			GotoXY(133, 13);	cout << "$$$$$$$$$";
+			GotoXY(133, 14);	cout << "       $$";
+			GotoXY(133, 15);	cout << "       $$";
+			GotoXY(133, 16);	cout << "$$$$$$$$$";
 			TextColor(7);
 		}
 		else if (Time == 40) {
 			TextColor(10);
-			GotoXY(130, 8);		cout << "       $$";
-			GotoXY(130, 9);		cout << "     $$  ";
-			GotoXY(130, 10);	cout << "    $$   ";
-			GotoXY(130, 11);	cout << "  $$   $$";
-			GotoXY(130, 12);	cout << "$$$$$$$$$";
-			GotoXY(130, 13);	cout << "       $$";
-			GotoXY(130, 14);	cout << "       $$";
+			GotoXY(133, 10);		cout << "       $$";
+			GotoXY(133, 11);		cout << "     $$  ";
+			GotoXY(133, 12);	cout << "    $$   ";
+			GotoXY(133, 13);	cout << "  $$   $$";
+			GotoXY(133, 14);	cout << "$$$$$$$$$";
+			GotoXY(133, 15);	cout << "       $$";
+			GotoXY(133, 16);	cout << "       $$";
 			TextColor(7);
 		}
 		else if (Time == 10) {
 			TextColor(10);
-			GotoXY(130, 8);		cout << " $$$$$$$$";
-			GotoXY(130, 9);		cout << " $$      ";
-			GotoXY(130, 10);	cout << " $$      ";
-			GotoXY(130, 11);	cout << " $$$$$$$$";
-			GotoXY(130, 12);	cout << "       $$";
-			GotoXY(130, 13);	cout << "       $$";
-			GotoXY(130, 14);	cout << " $$$$$$$$";
+			GotoXY(133, 10);	cout << " $$$$$$$$";
+			GotoXY(133, 11);	cout << " $$      ";
+			GotoXY(133, 12);	cout << " $$      ";
+			GotoXY(133, 13);	cout << " $$$$$$$$";
+			GotoXY(133, 14);	cout << "       $$";
+			GotoXY(133, 15);	cout << "       $$";
+			GotoXY(133, 16);	cout << " $$$$$$$$";
 			TextColor(7);
 		}
 		else if (Time == 200) {
 			TextColor(12);
-			GotoXY(130, 8);  cout << " $$$$$$    $$$$$$ ";
-			GotoXY(130, 9);  cout << "$$    $$  $$    $$";
-			GotoXY(130, 10); cout << "$$        $$    $$";
-			GotoXY(130, 11); cout << "$$  $$$$  $$    $$";
-			GotoXY(130, 12); cout << "$$    $$  $$    $$";
-			GotoXY(130, 13); cout << "$$    $$  $$    $$";
-			GotoXY(130, 14); cout << " $$$$$$    $$$$$$ ";
+			GotoXY(130, 10);	cout << " $$$$$$    $$$$$$ ";
+			GotoXY(130, 11);	cout << "$$    $$  $$    $$";
+			GotoXY(130, 12);	cout << "$$        $$    $$";
+			GotoXY(130, 13);	cout << "$$  $$$$  $$    $$";
+			GotoXY(130, 14);	cout << "$$    $$  $$    $$";
+			GotoXY(130, 15);	cout << "$$    $$  $$    $$";
+			GotoXY(130, 16);	cout << " $$$$$$    $$$$$$ ";
 			TextColor(7);
 		}
 		else if (Time == 240) {
-			GotoXY(130, 8);  cout << "                  ";
-			GotoXY(130, 9);  cout << "                  ";
-			GotoXY(130, 10); cout << "                  ";
-			GotoXY(130, 11); cout << "                  ";
-			GotoXY(130, 12); cout << "                  ";
-			GotoXY(130, 13); cout << "                  ";
-			GotoXY(130, 14); cout << "                  ";
+			GotoXY(130, 10);	cout << "                  ";
+			GotoXY(130, 11);	cout << "                  ";
+			GotoXY(130, 12);	cout << "                  ";
+			GotoXY(130, 13);	cout << "                  ";
+			GotoXY(130, 14);	cout << "                  ";
+			GotoXY(130, 15);	cout << "                  ";
+			GotoXY(130, 16);	cout << "                  ";
 		}
 	}
 	if (player->levelUp())
@@ -188,23 +188,20 @@ void Game::updateFrame()
 
 void Game::draw()
 {
-	GotoXY(122, 0);
-	cout << "Time: " << Time / 40;
-	GotoXY(122, 2);
+	GotoXY(132, 1);
+	cout << "Time : " << Time / 40;
+	GotoXY(132, 2);
 	cout << "Level: " << level;
-	GotoXY(122, 4);
-	cout << "Player: x: " << player->getXPos() << " y: " << player->getYPos();
-
 	player->draw();
-	drawBoard(122, 16, 138, 25);
-	GotoXY(125, 17);	cout << "INSTRUCTION";
-	GotoXY(124, 18);	cout << "W: Up";
-	GotoXY(124, 19);	cout << "S: Down";
-	GotoXY(124, 20);	cout << "A: Left";
-	GotoXY(124, 21);	cout << "D: Right";
-	GotoXY(124, 22);	cout << "P: Pause";
-	GotoXY(124, 23);	cout << "T: Save";
-	GotoXY(124, 24);	cout << "L: Load";
+	drawBoard(128, 26, 144, 35);
+	GotoXY(130, 27);	cout << "INSTRUCTION";
+	GotoXY(130, 28);	cout << "W: Up";
+	GotoXY(130, 29);	cout << "S: Down";
+	GotoXY(130, 30);	cout << "A: Left";
+	GotoXY(130, 31);	cout << "D: Right";
+	GotoXY(130, 32);	cout << "P: Pause";
+	GotoXY(130, 33);	cout << "T: Save";
+	GotoXY(130, 34);	cout << "L: Load";
 	for (int i = 0; i < lane; i++)
 		for (int j = 0; j < obsList[i].size(); j++)
 			obsList[i][j]->draw();
@@ -259,15 +256,25 @@ void Game::InitDraw()
 		cout << char(221) << endl;
 		GotoXY(xMap, i);
 		cout << char(222) << endl;
+		GotoXY(154, i);
+		cout << char(222) << endl;
 	}
-	for (int i = 0; i <= xMap; ++i)
+	for (int i = 0; i <= 154; ++i)
 	{
 		GotoXY(i, 0);
 		cout << char(223);
 		GotoXY(i, yMap + 2);
 		cout << char(223);
 	}
+	for (int i = xMap + 1; i <= 153; i++)
+	{
+		GotoXY(i, 22);
+		cout << char(223);
+		GotoXY(i, 4);
+		cout << char(223);
+	}
 	TextColor(7);
+	GotoXY(0, 0);
 }
 
 void Game::levelUpAnimation()
