@@ -51,4 +51,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="bomb.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="pop.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sound.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

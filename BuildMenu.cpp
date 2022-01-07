@@ -142,9 +142,18 @@ void Menu::drawDescription(int x)
 		GotoXY(51, 14);
 		cout << "DESCRIPTION";
 		GotoXY(27, 16);
-		cout << "The objective of the game is to cross the street without getting" << endl;
-		GotoXY(27, 17);
-		cout << "hit by vehicles or animals. Good luck!";
+		cout << "Your mission is to cross the street and deliver the bomb to ";
+		GotoXY(27, 17); 
+		cout << "our secret agent in the region. Beware of hostile enemies as";
+		GotoXY(27, 18); 
+		cout << "they ride on vehicles or disguised as innocent animals.";
+		GotoXY(27, 19);
+		cout << "They will do their best to destroy the bomb so avoid them at ";
+		GotoXY(27, 10);
+		cout << "all cost!";
+		GotoXY(27, 22);
+		cout << "Good luck out there agent!";
+
 		break;
 
 	}
