@@ -35,8 +35,9 @@ int main()
 				}
 				catch (runtime_error e)
 				{
-					GotoXY(54, 26); cout << "Can't load save file. Please enter again";
-					GotoXY(54, 23); cout << "                                                    ";
+					GotoXY(54, 18); cout << "Can't load save file. Please enter again";
+					Sleep(1000);
+					GotoXY(54, 18); cout << "                                                    ";
 					continue;
 				}
 				break;

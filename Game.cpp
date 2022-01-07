@@ -296,7 +296,7 @@ void Game::levelUpAnimation()
 		GotoXY(40, 25 - 5);	TextColor(3 * i + 1); cout << "$$ |      $$ |        \\$$$  /  $$ |      $$ |            $$ |  $$ |$$ |      ";
 		GotoXY(40, 26 - 5);	TextColor(3 * i + 1); cout << "$$$$$$$$\\ $$$$$$$$\\    \\$  /   $$$$$$$$\\ $$$$$$$$\\       \\$$$$$$  |$$ |      ";
 		GotoXY(40, 27 - 5);	TextColor(3 * i + 1); cout << "\\________|\\________|    \\_/    \\________|\\________|       \\______/ \\__|      ";
-		Sleep(700);
+		Sleep(400);
 		clrscr();
 		Sleep(400);
 	}
@@ -332,7 +332,7 @@ void Game::gameOverAnimation()
 		GotoXY(40, 25 - 5);	TextColor(3 * i + 1); cout << "$$ |  $$ |$$ |  $$ |$$ |\\$  /$$ |$$ |            $$ |  $$ |  \\$$$  /  $$ |      $$ |  $$ |";
 		GotoXY(40, 26 - 5);	TextColor(3 * i + 1); cout << "\\$$$$$$  |$$ |  $$ |$$ | \\_/ $$ |$$$$$$$$\\        $$$$$$  |   \\$  /   $$$$$$$$\\ $$ |  $$ |";
 		GotoXY(40, 27 - 5);	TextColor(3 * i + 1); cout << " \\______/ \\__|  \\__|\\__|     \\__|\\________|       \\______/     \\_/    \\________|\\__|  \\__|";
-		Sleep(1200);
+		Sleep(800);
 		clrscr();
 		Sleep(400);
 	}
@@ -511,10 +511,10 @@ void Game::loadGame(string name)
 	}
 
 	int tmp_x, tmp_y;
+	fread(&level, sizeof(int), 1, file);        // Read saved game level
 	int speed = 11 - level * 2;
 	if (speed <= 0)
 		speed = 1;
-	fread(&level, sizeof(int), 1, file);        // Read saved game level
 	fread(&Time, sizeof(int), 1, file);
 	fread(&player->xPos, sizeof(int), 1, file);			// Read player x position
 	fread(&player->yPos, sizeof(int), 1, file);			// Read player y position
